@@ -211,7 +211,29 @@
   .reveal.visible{ opacity:1; transform:translateY(0); }
 
   /* ---------- Profile ---------- */
-  #profile p{ max-width:680px; font-size:16px; color:var(--ink); }
+  .profile-layout{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:32px;
+    align-items:start;
+  }
+  .profile-photo{
+    width:min(200px, 42vw);
+    aspect-ratio:1;
+    flex-shrink:0;
+    border:1px solid var(--rule-strong);
+    border-radius:2px;
+    overflow:hidden;
+    box-shadow:0 1px 3px rgba(30,42,34,0.06);
+    background:var(--surface);
+  }
+  .profile-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  #profile p{ max-width:680px; font-size:16px; color:var(--ink); margin:0; }
 
   /* ---------- Skills ---------- */
   .skills-grid{
@@ -340,6 +362,8 @@
   }
 
   @media (max-width:640px){
+    .profile-layout{ grid-template-columns:1fr; justify-items:center; text-align:center; }
+    .profile-layout p{ max-width:none; }
     .ledger-meta{ grid-template-columns:1fr; }
     .ledger-sheet{ padding:24px 18px 24px 42px; }
     .ledger-sheet::before{ left:24px; }
@@ -406,7 +430,12 @@
   <section id="profile" class="reveal">
     <div class="eyebrow" data-i18n="profile_eyebrow">Opening Balance</div>
     <h2 data-i18n="profile_heading">Profile</h2>
-    <p data-i18n="profile_body">Master of Computer Science graduate (University of Wollongong) combining a strong background in software engineering and cybersecurity with six years of corporate account management and business consulting experience. Track record managing 1,000+ client accounts, optimising internal operations, and standardising workflows across cross-border environments — skilled at gathering complex requirements, protecting data integrity, and guiding stakeholders through new systems.</p>
+    <div class="profile-layout">
+      <figure class="profile-photo">
+        <img src="assets/profile.png" width="400" height="400" alt="Mayuko Kamazuka">
+      </figure>
+      <p data-i18n="profile_body">Master of Computer Science graduate (University of Wollongong) combining a strong background in software engineering and cybersecurity with six years of corporate account management and business consulting experience. Track record managing 1,000+ client accounts, optimising internal operations, and standardising workflows across cross-border environments — skilled at gathering complex requirements, protecting data integrity, and guiding stakeholders through new systems.</p>
+    </div>
   </section>
 
   <!-- SKILLS -->
