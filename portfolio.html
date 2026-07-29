@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayuko Kamazuka — Career Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;0,700;0,900;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F4F7F1;
+    --paper-alt: #EDF3E9;
+    --rule: #CFE0C9;
+    --rule-strong: #9CBB93;
+    --ink: #1E2A22;
+    --ink-soft: #52604F;
+    --ink-faint: #85937F;
+    --green: #224c8c;
+    --green-dark: #204C36;
+    --red: #B0392C;
+    --red-soft: #C97A6D;
+    --surface: #FBFCF9;
+    --shadow: 0 1px 0 rgba(30,42,34,0.06);
+    --max: 920px;
+    --font-display: 'Alegreya', Georgia, serif;
+    --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--green); color:#fff; }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- Ledger sheet texture (used on cards) ---------- */
+  .ledger-sheet{
+    position:relative;
+    background:
+      repeating-linear-gradient(to bottom, transparent, transparent 30px, var(--rule) 31px),
+      var(--surface);
+    border:1px solid var(--rule-strong);
+    border-radius:2px;
+    padding:28px 28px 28px 56px;
+    box-shadow: 0 1px 3px rgba(30,42,34,0.06);
+  }
+  .ledger-sheet::before{
+    content:"";
+    position:absolute;
+    top:0; bottom:0; left:38px;
+    width:1.5px;
+    background:var(--red-soft);
+    opacity:0.55;
+  }
+
+  /* ---------- Header / nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,247,241,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule-strong);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:var(--max);
+    margin:0 auto;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .brand{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .brand b{ color:var(--ink); }
+  nav.links{
+    display:flex; gap:22px; flex-wrap:wrap;
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:0.04em;
+  }
+  nav.links a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    padding-bottom:2px;
+    border-bottom:1px solid transparent;
+    transition:border-color .2s, color .2s;
+  }
+  nav.links a:hover{ color:var(--green-dark); border-color:var(--green); }
+
+  .lang-toggle{ display:flex; gap:6px; }
+  .lang-btn{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    padding:5px 10px;
+    border:1px solid var(--rule-strong);
+    background:transparent;
+    color:var(--ink-soft);
+    border-radius:2px;
+    cursor:pointer;
+    transition:all .2s;
+  }
+  .lang-btn.active{ background:var(--green); color:#fff; border-color:var(--green); }
+  .lang-btn:hover:not(.active){ border-color:var(--green); color:var(--green-dark); }
+
+  /* ---------- eyebrow / labels ---------- */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--green-dark);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--green);
+  }
+
+  h1,h2,h3{ font-family:var(--font-display); font-weight:700; margin:0; }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:96px 0 64px; }
+  .hero-eyebrow{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--red); margin-bottom:18px; }
+  .hero h1{
+    font-size:clamp(40px,7vw,68px);
+    font-style:italic;
+    font-weight:900;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    margin-bottom:14px;
+  }
+  .hero-role{
+    font-family:var(--font-mono);
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:0.02em;
+    margin-bottom:22px;
+  }
+  .hero-sub{
+    max-width:600px;
+    font-size:17px;
+    color:var(--ink);
+    margin-bottom:36px;
+  }
+  .ledger-meta{
+    border-top:1px solid var(--rule-strong);
+    border-bottom:1px solid var(--rule-strong);
+    padding:18px 0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:34px;
+  }
+  .meta-item .meta-label{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:5px;
+  }
+  .meta-item .meta-val{ font-size:14.5px; color:var(--ink); }
+  .meta-item .meta-val a{ text-decoration:none; border-bottom:1px solid var(--rule-strong); }
+  .meta-item .meta-val a:hover{ border-color:var(--green); color:var(--green-dark); }
+
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:0.04em;
+    padding:12px 20px;
+    border-radius:2px;
+    text-decoration:none;
+    display:inline-block;
+    transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{ background:var(--green); color:#fff; }
+  .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 4px 10px rgba(47,111,78,0.25); }
+  .btn-ghost{ border:1px solid var(--rule-strong); color:var(--ink); }
+  .btn-ghost:hover{ border-color:var(--green); color:var(--green-dark); }
+
+  /* ---------- generic section ---------- */
+  section{ padding:64px 0; }
+  section h2{ font-size:clamp(26px,4vw,32px); margin-bottom:30px; }
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- Profile ---------- */
+  #profile p{ max-width:680px; font-size:16px; color:var(--ink); }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1px;
+    background:var(--rule-strong);
+    border:1px solid var(--rule-strong);
+  }
+  .skill-cat{ background:var(--surface); padding:22px; }
+  .skill-cat h3{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--green-dark);
+    font-weight:600;
+    margin-bottom:12px;
+  }
+  .skill-cat ul{ list-style:none; padding:0; margin:0; font-size:14px; color:var(--ink); }
+  .skill-cat li{ padding:4px 0; border-top:1px dashed var(--rule); }
+  .skill-cat li:first-child{ border-top:none; }
+
+  /* ---------- Ledger entries (experience) ---------- */
+  .entry{ margin-bottom:26px; }
+  .entry-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:8px;
+    margin-bottom:10px;
+  }
+  .entry-no{ font-family:var(--font-mono); font-size:12px; color:var(--red); letter-spacing:0.06em; }
+  .entry-dates{ font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); }
+  .entry-title{ font-family:var(--font-display); font-size:21px; font-weight:700; margin-bottom:2px; }
+  .entry-company{ font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); margin-bottom:14px; }
+  .entry ul{ margin:0; padding-left:18px; font-size:14.5px; color:var(--ink); }
+  .entry li{ margin-bottom:6px; }
+
+  /* ---------- Projects / case files ---------- */
+  .case-grid{ display:grid; grid-template-columns:1fr; gap:24px; }
+  .case-file{ position:relative; }
+  .case-file .entry-title{ font-size:22px; }
+  .case-desc{ font-size:14.5px; color:var(--ink); margin:10px 0 16px; max-width:640px; }
+
+  .tech-tags{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px; }
+  .tech-tag{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:0.03em;
+    padding:4px 10px; border:1px solid var(--rule-strong); border-radius:2px;
+    color:var(--ink-soft); background:var(--paper-alt);
+  }
+
+  .work-links{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px; }
+  .link-btn{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:0.02em;
+    padding:8px 14px; border:1px solid var(--green); color:var(--green-dark);
+    border-radius:2px; text-decoration:none; transition:all .2s; background:transparent;
+  }
+  .link-btn:hover{ background:var(--green); color:#fff; }
+  .link-btn.disabled{
+    border-style:dashed; border-color:var(--rule-strong); color:var(--ink-faint);
+    pointer-events:none;
+  }
+
+  .shot-row{ display:flex; gap:10px; flex-wrap:wrap; }
+  .shot-placeholder{
+    width:150px; height:96px; border:1.5px dashed var(--rule-strong); border-radius:2px;
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:8px;
+    font-family:var(--font-mono); font-size:10.5px; color:var(--ink-faint); background:var(--paper);
+  }
+  .shot-placeholder img{ width:100%; height:100%; object-fit:cover; border-radius:1px; }
+
+  .projects-intro{ max-width:620px; font-size:14.5px; color:var(--ink-soft); margin:-14px 0 30px; }
+
+  .work-card--empty{ border-style:dashed; }
+  .work-card--empty::before{ background:var(--rule-strong); }
+  .work-card--empty .entry-title{ color:var(--ink-faint); font-style:italic; font-weight:600; }
+  .work-card--empty .entry-no{ color:var(--ink-faint); }
+
+  .stamp{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--red);
+    border:2px solid var(--red);
+    border-radius:50%;
+    width:92px; height:92px;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    transform:rotate(-8deg);
+    position:absolute;
+    top:22px; right:22px;
+    opacity:0.85;
+    mix-blend-mode:multiply;
+    line-height:1.2;
+    padding:6px;
+  }
+  .stamp::before{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border:1px solid var(--red);
+    border-radius:50%;
+  }
+
+  /* ---------- Education ---------- */
+  .edu-card{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; align-items:baseline; }
+  .edu-degree{ font-family:var(--font-display); font-size:22px; font-weight:700; }
+  .edu-school{ font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); margin-top:4px; }
+  .edu-date{ font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); }
+
+  /* ---------- Contact / footer ---------- */
+  #contact{ text-align:left; }
+  .contact-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:22px; margin-top:24px; }
+  .contact-item .meta-label{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px; }
+  .contact-item .meta-val{ font-size:15px; }
+  .contact-item .meta-val a{ text-decoration:none; border-bottom:1px solid var(--rule-strong); }
+  .contact-item .meta-val a:hover{ border-color:var(--green); color:var(--green-dark); }
+
+  footer{
+    border-top:1px solid var(--rule-strong);
+    padding:30px 0 60px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--ink-faint);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width:640px){
+    .ledger-meta{ grid-template-columns:1fr; }
+    .ledger-sheet{ padding:24px 18px 24px 42px; }
+    .ledger-sheet::before{ left:24px; }
+    .stamp{ position:static; margin-bottom:14px; transform:rotate(-4deg); }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+    .reveal{ opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a class="brand" href="#top"><b>M. KAMAZUKA</b> · LEDGER v1.0</a>
+    <nav class="links">
+      <a href="#profile" data-i18n="nav_profile">Profile</a>
+      <a href="#skills" data-i18n="nav_skills">Skills</a>
+      <a href="#experience" data-i18n="nav_experience">Experience</a>
+      <a href="#projects" data-i18n="nav_projects">Projects</a>
+      <a href="#education" data-i18n="nav_education">Education</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="ja" onclick="setLang('ja')">日本語</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Career Ledger — Entry No. 001</div>
+    <h1>Mayuko Kamazuka</h1>
+    <div class="hero-role" data-i18n="hero_role">Computer Science Graduate — IT Support &amp; Software Engineering</div>
+    <p class="hero-sub" data-i18n="hero_sub">Six years of keeping business accounts precise now paired with a Master's in software engineering and cybersecurity — I bring the same discipline to systems that I once brought to ledgers.</p>
+
+    <div class="ledger-meta">
+      <div class="meta-item">
+        <div class="meta-label" data-i18n="meta_location_label">Location</div>
+        <div class="meta-val">Newcastle, NSW 2300</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label" data-i18n="meta_status_label">Status</div>
+        <div class="meta-val" data-i18n="meta_status_val">Open to work — IT Support / Software Engineering</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label" data-i18n="meta_contact_label">Contact</div>
+        <div class="meta-val"><a href="mailto:mkamazuka@gmail.com">mkamazuka@gmail.com</a></div>
+      </div>
+    </div>
+
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#projects" data-i18n="hero_cta_projects">View Case Files</a>
+      <a class="btn btn-ghost" href="#contact" data-i18n="hero_cta_contact">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="profile" class="reveal">
+    <div class="eyebrow" data-i18n="profile_eyebrow">Opening Balance</div>
+    <h2 data-i18n="profile_heading">Profile</h2>
+    <p data-i18n="profile_body">Master of Computer Science graduate (University of Wollongong) combining a strong background in software engineering and cybersecurity with six years of corporate account management and business consulting experience. Track record managing 1,000+ client accounts, optimising internal operations, and standardising workflows across cross-border environments — skilled at gathering complex requirements, protecting data integrity, and guiding stakeholders through new systems.</p>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <div class="eyebrow" data-i18n="skills_eyebrow">Chart of Accounts</div>
+    <h2 data-i18n="skills_heading">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <h3 data-i18n="skills_cat1">Programming</h3>
+        <ul><li>Python</li><li>JavaScript</li><li>SQL</li><li>HTML / CSS</li></ul>
+      </div>
+      <div class="skill-cat">
+        <h3 data-i18n="skills_cat2">AI / ML</h3>
+        <ul><li>YOLOv12</li><li data-i18n="skill_cv">Computer Vision</li><li data-i18n="skill_od">Object Detection</li></ul>
+      </div>
+      <div class="skill-cat">
+        <h3 data-i18n="skills_cat3">Cybersecurity</h3>
+        <ul><li data-i18n="skill_aes">AES Symmetric Encryption</li><li data-i18n="skill_ecdsa">ECDSA Digital Signatures</li><li>Blockchain</li></ul>
+      </div>
+      <div class="skill-cat">
+        <h3 data-i18n="skills_cat4">Tools &amp; Methods</h3>
+        <ul><li>GitHub</li><li>REST APIs</li><li data-i18n="skill_agile">Agile Project Management</li><li data-i18n="skill_wa">Workflow Automation</li></ul>
+      </div>
+      <div class="skill-cat">
+        <h3 data-i18n="skills_cat5">Languages</h3>
+        <ul><li data-i18n="skill_jp">Japanese — Native</li><li data-i18n="skill_en">English — Professional</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="reveal">
+    <div class="eyebrow" data-i18n="experience_eyebrow">Transaction History</div>
+    <h2 data-i18n="experience_heading">Professional Experience</h2>
+
+    <div class="ledger-sheet">
+      <div class="entry">
+        <div class="entry-head">
+          <span class="entry-no">ENTRY 003</span>
+          <span class="entry-dates" data-i18n="exp1_dates">2024 — Present</span>
+        </div>
+        <div class="entry-title" data-i18n="exp1_title">Remote Accounting Staff</div>
+        <div class="entry-company" data-i18n="exp1_company">Aoi Tax &amp; Consulting Group · Part-time</div>
+        <ul>
+          <li data-i18n="exp1_b1">Built a cloud-based procedures manual in Notion to standardise annual and monthly tax filing workflows, lifting team efficiency by 30%.</li>
+          <li data-i18n="exp1_b2">Maintained accurate bookkeeping records under secure cloud file-handling protocols, reinforcing hands-on discipline around data integrity.</li>
+        </ul>
+      </div>
+
+      <div class="entry" style="margin-bottom:0;">
+        <div class="entry-head">
+          <span class="entry-no">ENTRY 002</span>
+          <span class="entry-dates" data-i18n="exp2_dates">2017 — 2023</span>
+        </div>
+        <div class="entry-title" data-i18n="exp2_title">Management &amp; Accounting Staff</div>
+        <div class="entry-company" data-i18n="exp2_company">I-Glocal Co., Ltd. · Japan &amp; Vietnam</div>
+        <ul>
+          <li data-i18n="exp2_b1">Helped migrate financial workflows from Excel to a cloud-integrated accounting system, cutting manual processing time by 40%.</li>
+          <li data-i18n="exp2_b2">Supported an automated invoicing rollout for 400+ clients, reducing manual workload by 50%.</li>
+          <li data-i18n="exp2_b3">Managed contracts and consultations across a 1,000+ account portfolio, including ASX-listed companies.</li>
+          <li data-i18n="exp2_b4">Coordinated with cross-border teams in Japan and Vietnam on technical documentation and training for 30+ colleagues, in English and Japanese.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="reveal">
+    <div class="eyebrow" data-i18n="projects_eyebrow">Audit Trail</div>
+    <h2 data-i18n="projects_heading">Academic &amp; Technical Projects</h2>
+    <p class="projects-intro" data-i18n="projects_intro">New builds get logged here as they ship — this ledger grows with every project.</p>
+
+    <div class="case-grid">
+      <div class="ledger-sheet case-file">
+        <div class="stamp" data-i18n="proj1_stamp">In<br>Progress</div>
+        <div class="entry-head">
+          <span class="entry-no">CASE FILE 004</span>
+          <span class="entry-dates" data-i18n="proj1_dates">Jul 2025 — Jun 2026</span>
+        </div>
+        <div class="entry-title" data-i18n="proj1_title">AI-Assisted Mobile Navigation for the Visually Impaired</div>
+        <div class="entry-company" data-i18n="proj1_role">Capstone Project, University of Wollongong · AI Developer &amp; Team Lead (rotating)</div>
+        <p class="case-desc" data-i18n="proj1_desc">Leading a cross-functional team building a real-time object detection mobile app on YOLOv12 — managing dataset classification, model training pipelines, and delivery milestones through Agile methodology. Translating complex user needs into working technical solutions.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span><span class="tech-tag">YOLOv12</span>
+          <span class="tech-tag">Computer Vision</span><span class="tech-tag">Agile</span>
+        </div>
+        <!-- 実際のリンクができたら href="#" を差し替えてください -->
+        <div class="work-links">
+          <a class="link-btn disabled" href="#" data-i18n="link_demo">Demo (coming soon)</a>
+          <a class="link-btn disabled" href="#" data-i18n="link_github">GitHub (coming soon)</a>
+        </div>
+        <div class="shot-row">
+          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
+          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
+        </div>
+      </div>
+
+      <div class="ledger-sheet case-file">
+        <div class="stamp" data-i18n="proj2_stamp">Verified<br>29 / 30</div>
+        <div class="entry-head">
+          <span class="entry-no">CASE FILE 005</span>
+          <span class="entry-dates" data-i18n="proj2_dates">Sep 2025 — Nov 2025</span>
+        </div>
+        <div class="entry-title" data-i18n="proj2_title">Blockchain-Based Secure File Sharing System</div>
+        <div class="entry-company" data-i18n="proj2_role">Backend Developer, University of Wollongong</div>
+        <p class="case-desc" data-i18n="proj2_desc">Implemented AES symmetric encryption and ECDSA digital signatures for end-to-end data security, with a blockchain ledger for tamper-resistant access logging. Scored 29/30 for technical implementation and security architecture.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">AES</span><span class="tech-tag">ECDSA</span>
+          <span class="tech-tag">Blockchain</span><span class="tech-tag">Python</span>
+        </div>
+        <div class="work-links">
+          <a class="link-btn disabled" href="#" data-i18n="link_demo">Demo (coming soon)</a>
+          <a class="link-btn disabled" href="#" data-i18n="link_github">GitHub (coming soon)</a>
+        </div>
+        <div class="shot-row">
+          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
+          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
+        </div>
+      </div>
+
+      <div class="ledger-sheet case-file work-card--empty">
+        <div class="entry-head">
+          <span class="entry-no">CASE FILE 006</span>
+          <span class="entry-dates" data-i18n="proj_empty_dates">Reserved</span>
+        </div>
+        <div class="entry-title" data-i18n="proj_empty_title">— your next build goes here —</div>
+        <p class="case-desc" data-i18n="proj_empty_desc">A web app, a support tool, an infrastructure build — once you ship something new, log it in this entry: title, tech stack, links, and a couple of screenshots.</p>
+      </div>
+
+      <div class="ledger-sheet case-file work-card--empty">
+        <div class="entry-head">
+          <span class="entry-no">CASE FILE 007</span>
+          <span class="entry-dates" data-i18n="proj_empty_dates">Reserved</span>
+        </div>
+        <div class="entry-title" data-i18n="proj_empty_title">— your next build goes here —</div>
+        <p class="case-desc" data-i18n="proj_empty_desc">A web app, a support tool, an infrastructure build — once you ship something new, log it in this entry: title, tech stack, links, and a couple of screenshots.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="reveal">
+    <div class="eyebrow" data-i18n="education_eyebrow">Closing Balance</div>
+    <h2 data-i18n="education_heading">Education</h2>
+    <div class="ledger-sheet">
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree" data-i18n="edu_degree">Master of Computer Science</div>
+          <div class="edu-school" data-i18n="edu_school">Software Engineering &amp; Cybersecurity · University of Wollongong</div>
+        </div>
+        <div class="edu-date" data-i18n="edu_date">Graduated July 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="eyebrow" data-i18n="contact_eyebrow">Reconciliation</div>
+    <h2 data-i18n="contact_heading">Let's Talk</h2>
+    <p style="max-width:600px;" data-i18n="contact_body">Currently balancing the books on my next role. If you're looking for someone who can bridge day-to-day operations with hands-on engineering, I'd welcome the conversation.</p>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="meta-label" data-i18n="contact_email_label">Email</div>
+        <div class="meta-val"><a href="mailto:mkamazuka@gmail.com">mkamazuka@gmail.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="meta-label" data-i18n="contact_phone_label">Phone</div>
+        <div class="meta-val"><a href="tel:0422945588">0422 945 588</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="meta-label" data-i18n="contact_location_label">Location</div>
+        <div class="meta-val">Newcastle, NSW</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span data-i18n="footer_left">Ledger closed — balance carried forward.</span>
+  <span>&copy; 2026 Mayuko Kamazuka</span>
+</footer>
+
+<script>
+  const translations = {
+    nav_profile:{en:"Profile",ja:"プロフィール"},
+    nav_skills:{en:"Skills",ja:"スキル"},
+    nav_experience:{en:"Experience",ja:"職歴"},
+    nav_projects:{en:"Projects",ja:"プロジェクト"},
+    nav_education:{en:"Education",ja:"学歴"},
+    nav_contact:{en:"Contact",ja:"連絡先"},
+
+    hero_eyebrow:{en:"Career Ledger — Entry No. 001",ja:"キャリア台帳 ― 記録 No. 001"},
+    hero_role:{en:"Computer Science Graduate — IT Support &amp; Software Engineering",ja:"コンピューターサイエンス修士修了 ― ITサポート & ソフトウェアエンジニアリング"},
+    hero_sub:{en:"Six years of keeping business accounts precise now paired with a Master's in software engineering and cybersecurity — I bring the same discipline to systems that I once brought to ledgers.",ja:"6年間、正確さを追求してきた経理・会計の実務経験に、ソフトウェア工学とサイバーセキュリティの修士課程で得た専門性を掛け合わせました。帳簿に向き合ってきたのと同じ緻密さを、いまはシステムに向けています。"},
+
+    meta_location_label:{en:"Location",ja:"所在地"},
+    meta_status_label:{en:"Status",ja:"ステータス"},
+    meta_status_val:{en:"Open to work — IT Support / Software Engineering",ja:"求職中 ― ITサポート / ソフトウェアエンジニア"},
+    meta_contact_label:{en:"Contact",ja:"連絡先"},
+
+    hero_cta_projects:{en:"View Case Files",ja:"プロジェクトを見る"},
+    hero_cta_contact:{en:"Get in Touch",ja:"連絡する"},
+
+    profile_eyebrow:{en:"Opening Balance",ja:"期首残高"},
+    profile_heading:{en:"Profile",ja:"プロフィール"},
+    profile_body:{en:"Master of Computer Science graduate (University of Wollongong) combining a strong background in software engineering and cybersecurity with six years of corporate account management and business consulting experience. Track record managing 1,000+ client accounts, optimising internal operations, and standardising workflows across cross-border environments — skilled at gathering complex requirements, protecting data integrity, and guiding stakeholders through new systems.",
+      ja:"ウロンゴン大学にてコンピューターサイエンス修士(ソフトウェア工学・サイバーセキュリティ専攻)を修了。6年間の法人アカウントマネジメント・ビジネスコンサルティング経験と技術的な専門性を兼ね備える。1,000件超のクライアントアカウント管理、社内業務の最適化、国境を越えた環境でのワークフロー標準化などの実績を持つ。複雑な要件のヒアリング、データの正確性の担保、新システム導入時のステークホルダー調整を得意とする。"},
+
+    skills_eyebrow:{en:"Chart of Accounts",ja:"勘定科目一覧"},
+    skills_heading:{en:"Skills",ja:"スキル"},
+    skills_cat1:{en:"Programming",ja:"プログラミング"},
+    skills_cat2:{en:"AI / ML",ja:"AI / 機械学習"},
+    skills_cat3:{en:"Cybersecurity",ja:"サイバーセキュリティ"},
+    skills_cat4:{en:"Tools &amp; Methods",ja:"ツール & 手法"},
+    skills_cat5:{en:"Languages",ja:"言語"},
+    skill_cv:{en:"Computer Vision",ja:"コンピュータビジョン"},
+    skill_od:{en:"Object Detection",ja:"物体検出"},
+    skill_aes:{en:"AES Symmetric Encryption",ja:"AES共通鍵暗号"},
+    skill_ecdsa:{en:"ECDSA Digital Signatures",ja:"ECDSAデジタル署名"},
+    skill_agile:{en:"Agile Project Management",ja:"アジャイルプロジェクト管理"},
+    skill_wa:{en:"Workflow Automation",ja:"業務自動化"},
+    skill_jp:{en:"Japanese — Native",ja:"日本語 ― ネイティブ"},
+    skill_en:{en:"English — Professional",ja:"英語 ― ビジネスレベル"},
+
+    experience_eyebrow:{en:"Transaction History",ja:"取引履歴"},
+    experience_heading:{en:"Professional Experience",ja:"職務経歴"},
+
+    exp1_dates:{en:"2024 — Present",ja:"2024年 ― 現在"},
+    exp1_title:{en:"Remote Accounting Staff",ja:"リモート経理スタッフ"},
+    exp1_company:{en:"Aoi Tax &amp; Consulting Group · Part-time",ja:"Aoi Tax &amp; Consulting Group ・ パートタイム"},
+    exp1_b1:{en:"Built a cloud-based procedures manual in Notion to standardise annual and monthly tax filing workflows, lifting team efficiency by 30%.",ja:"Notionを用いて年次・月次の税務申告フローを標準化したクラウド型業務マニュアルを構築し、チームの業務効率を30%改善。"},
+    exp1_b2:{en:"Maintained accurate bookkeeping records under secure cloud file-handling protocols, reinforcing hands-on discipline around data integrity.",ja:"安全なクラウドファイル管理プロトコルのもとで正確な記帳を実施し、データの正確性を担保する実務感覚を強化。"},
+
+    exp2_dates:{en:"2017 — 2023",ja:"2017年 ― 2023年"},
+    exp2_title:{en:"Management &amp; Accounting Staff",ja:"マネジメント・経理スタッフ"},
+    exp2_company:{en:"I-Glocal Co., Ltd. · Japan &amp; Vietnam",ja:"I-Glocal Co., Ltd. ・ 日本 & ベトナム"},
+    exp2_b1:{en:"Helped migrate financial workflows from Excel to a cloud-integrated accounting system, cutting manual processing time by 40%.",ja:"Excel運用からクラウド統合型会計システムへの移行を支援し、手作業による処理時間を40%削減。"},
+    exp2_b2:{en:"Supported an automated invoicing rollout for 400+ clients, reducing manual workload by 50%.",ja:"400件超のクライアント向け請求書自動化の導入を支援し、手作業の負荷を50%削減。"},
+    exp2_b3:{en:"Managed contracts and consultations across a 1,000+ account portfolio, including ASX-listed companies.",ja:"ASX上場企業を含む1,000件超のアカウントポートフォリオにおいて、契約管理・コンサルティング対応を担当。"},
+    exp2_b4:{en:"Coordinated with cross-border teams in Japan and Vietnam on technical documentation and training for 30+ colleagues, in English and Japanese.",ja:"日本とベトナムの部門横断チームと連携し、30名超の同僚に対して英語・日本語で技術文書の整備と研修を実施。"},
+
+    projects_eyebrow:{en:"Audit Trail",ja:"監査証跡"},
+    projects_heading:{en:"Academic &amp; Technical Projects",ja:"学術・技術プロジェクト"},
+    projects_intro:{en:"New builds get logged here as they ship — this ledger grows with every project.",ja:"新しく開発したものはここに随時追加していきます。作品が増えるたびに、この台帳も育っていきます。"},
+    link_demo:{en:"Demo (coming soon)",ja:"デモ（準備中）"},
+    link_github:{en:"GitHub (coming soon)",ja:"GitHub（準備中）"},
+    shot_placeholder:{en:"+ Add<br>screenshot",ja:"+ 画像を<br>追加"},
+    proj_empty_dates:{en:"Reserved",ja:"予約枠"},
+    proj_empty_title:{en:"— your next build goes here —",ja:"— 次の作品はここに —"},
+    proj_empty_desc:{en:"A web app, a support tool, an infrastructure build — once you ship something new, log it in this entry: title, tech stack, links, and a couple of screenshots.",
+      ja:"Webアプリでも、業務ツールでも、インフラ構築でも構いません。何か新しく作ったら、タイトル・使用技術・リンク・スクリーンショットをこの枠に追加してください。"},
+
+    proj1_stamp:{en:"In<br>Progress",ja:"進行中"},
+    proj1_dates:{en:"Jul 2025 — Jun 2026",ja:"2025年7月 ― 2026年6月"},
+    proj1_title:{en:"AI-Assisted Mobile Navigation for the Visually Impaired",ja:"視覚障がい者向けAI支援モバイルナビゲーション"},
+    proj1_role:{en:"Capstone Project, University of Wollongong · AI Developer &amp; Team Lead (rotating)",ja:"ウロンゴン大学 卒業研究プロジェクト ・ AI開発担当 & チームリーダー(持ち回り)"},
+    proj1_desc:{en:"Leading a cross-functional team building a real-time object detection mobile app on YOLOv12 — managing dataset classification, model training pipelines, and delivery milestones through Agile methodology. Translating complex user needs into working technical solutions.",
+      ja:"YOLOv12を用いたリアルタイム物体検出モバイルアプリの開発を、部門横断チームを率いて推進。データセットの分類、モデル学習パイプラインの構築、アジャイル手法によるマイルストーン管理を担当し、複雑なユーザーニーズを実装可能な技術要件へ落とし込んでいる。"},
+
+    proj2_stamp:{en:"Verified<br>29 / 30",ja:"検証済<br>29 / 30"},
+    proj2_dates:{en:"Sep 2025 — Nov 2025",ja:"2025年9月 ― 2025年11月"},
+    proj2_title:{en:"Blockchain-Based Secure File Sharing System",ja:"ブロックチェーン型セキュアファイル共有システム"},
+    proj2_role:{en:"Backend Developer, University of Wollongong",ja:"ウロンゴン大学 ・ バックエンド開発担当"},
+    proj2_desc:{en:"Implemented AES symmetric encryption and ECDSA digital signatures for end-to-end data security, with a blockchain ledger for tamper-resistant access logging. Scored 29/30 for technical implementation and security architecture.",
+      ja:"AES共通鍵暗号とECDSAデジタル署名によるエンドツーエンドのデータ保護を実装し、改ざん耐性のあるアクセスログ記録にブロックチェーン台帳を活用。技術実装およびセキュリティ設計の評価で29/30を獲得。"},
+
+    education_eyebrow:{en:"Closing Balance",ja:"期末残高"},
+    education_heading:{en:"Education",ja:"学歴"},
+    edu_degree:{en:"Master of Computer Science",ja:"コンピューターサイエンス修士"},
+    edu_school:{en:"Software Engineering &amp; Cybersecurity · University of Wollongong",ja:"ソフトウェア工学・サイバーセキュリティ専攻 ・ ウロンゴン大学"},
+    edu_date:{en:"Graduated July 2026",ja:"2026年7月 卒業"},
+
+    contact_eyebrow:{en:"Reconciliation",ja:"照合"},
+    contact_heading:{en:"Let's Talk",ja:"お問い合わせ"},
+    contact_body:{en:"Currently balancing the books on my next role. If you're looking for someone who can bridge day-to-day operations with hands-on engineering, I'd welcome the conversation.",
+      ja:"現在、次のキャリアに向けて準備を進めています。日々の業務運営と実践的なエンジニアリングの両方に橋渡しできる人材をお探しでしたら、ぜひお話しさせてください。"},
+    contact_email_label:{en:"Email",ja:"メール"},
+    contact_phone_label:{en:"Phone",ja:"電話"},
+    contact_location_label:{en:"Location",ja:"所在地"},
+
+    footer_left:{en:"Ledger closed — balance carried forward.",ja:"本日の記帳完了 ― 次のエントリへ。"}
+  };
+
+  let currentLang = 'en';
+  function setLang(lang){
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(translations[key]) el.innerHTML = translations[key][lang];
+    });
+    document.querySelectorAll('.lang-btn').forEach(b=>{
+      b.classList.toggle('active', b.dataset.lang===lang);
+    });
+  }
+
+  // scroll reveal
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
