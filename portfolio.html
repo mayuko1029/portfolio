@@ -271,11 +271,63 @@
   .entry ul{ margin:0; padding-left:18px; font-size:14.5px; color:var(--ink); }
   .entry li{ margin-bottom:6px; }
 
-  /* ---------- Projects / case files ---------- */
-  .case-grid{ display:grid; grid-template-columns:1fr; gap:24px; }
-  .case-file{ position:relative; }
+  /* ---------- Works / projects ---------- */
+  .projects-intro{ max-width:620px; font-size:15px; color:var(--ink-soft); margin:-14px 0 28px; }
+
+  .works-index{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:14px;
+    margin-bottom:40px;
+  }
+  .works-index a{
+    display:block;
+    text-decoration:none;
+    background:var(--surface);
+    border:1px solid var(--rule-strong);
+    border-radius:2px;
+    padding:22px 18px;
+    transition:border-color .2s, transform .15s, box-shadow .15s;
+    box-shadow:var(--shadow);
+  }
+  .works-index a:hover{
+    border-color:var(--green);
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(30,42,34,0.08);
+  }
+  .works-index .wi-no{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--red);
+    margin-bottom:8px;
+  }
+  .works-index .wi-title{
+    font-family:var(--font-display);
+    font-size:18px;
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.3;
+    margin-bottom:6px;
+  }
+  .works-index .wi-meta{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    color:var(--ink-faint);
+  }
+
+  .case-grid{ display:grid; grid-template-columns:1fr; gap:28px; }
+  .case-file{ position:relative; scroll-margin-top:80px; }
   .case-file .entry-title{ font-size:22px; }
   .case-desc{ font-size:14.5px; color:var(--ink); margin:10px 0 16px; max-width:640px; }
+  .case-stack-label{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--green-dark);
+    margin:0 0 8px;
+  }
 
   .tech-tags{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px; }
   .tech-tag{
@@ -303,13 +355,6 @@
     font-family:var(--font-mono); font-size:10.5px; color:var(--ink-faint); background:var(--paper);
   }
   .shot-placeholder img{ width:100%; height:100%; object-fit:cover; border-radius:1px; }
-
-  .projects-intro{ max-width:620px; font-size:14.5px; color:var(--ink-soft); margin:-14px 0 30px; }
-
-  .work-card--empty{ border-style:dashed; }
-  .work-card--empty::before{ background:var(--rule-strong); }
-  .work-card--empty .entry-title{ color:var(--ink-faint); font-style:italic; font-weight:600; }
-  .work-card--empty .entry-no{ color:var(--ink-faint); }
 
   .stamp{
     font-family:var(--font-mono);
@@ -383,9 +428,9 @@
     <a class="brand" href="#top"><b>M. KAMAZUKA</b> · LEDGER v1.0</a>
     <nav class="links">
       <a href="#profile" data-i18n="nav_profile">Profile</a>
+      <a href="#works" data-i18n="nav_works">Works</a>
       <a href="#skills" data-i18n="nav_skills">Skills</a>
       <a href="#experience" data-i18n="nav_experience">Experience</a>
-      <a href="#projects" data-i18n="nav_projects">Projects</a>
       <a href="#education" data-i18n="nav_education">Education</a>
       <a href="#contact" data-i18n="nav_contact">Contact</a>
     </nav>
@@ -421,7 +466,7 @@
     </div>
 
     <div class="hero-ctas">
-      <a class="btn btn-primary" href="#projects" data-i18n="hero_cta_projects">View Case Files</a>
+      <a class="btn btn-primary" href="#works" data-i18n="hero_cta_projects">View Works</a>
       <a class="btn btn-ghost" href="#contact" data-i18n="hero_cta_contact">Get in Touch</a>
     </div>
   </section>
@@ -435,6 +480,76 @@
         <img src="assets/profile.png" width="400" height="400" alt="Mayuko Kamazuka">
       </figure>
       <p data-i18n="profile_body">Master of Computer Science graduate (University of Wollongong) combining a strong background in software engineering and cybersecurity with six years of corporate account management and business consulting experience. Track record managing 1,000+ client accounts, optimising internal operations, and standardising workflows across cross-border environments — skilled at gathering complex requirements, protecting data integrity, and guiding stakeholders through new systems.</p>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section id="works" class="reveal">
+    <div class="eyebrow" data-i18n="projects_eyebrow">Audit Trail</div>
+    <h2 data-i18n="projects_heading">Works</h2>
+    <p class="projects-intro" data-i18n="projects_intro">A selection of apps and systems I've built — from AI mobile navigation to secure file sharing. More entries as new work ships.</p>
+
+    <div class="works-index">
+      <a href="#work-nav">
+        <div class="wi-no">WORK 01</div>
+        <div class="wi-title" data-i18n="proj1_short">AI Mobile Navigation</div>
+        <div class="wi-meta" data-i18n="proj1_wi_meta">YOLOv12 · Capstone</div>
+      </a>
+      <a href="#work-secure">
+        <div class="wi-no">WORK 02</div>
+        <div class="wi-title" data-i18n="proj2_short">Secure File Sharing</div>
+        <div class="wi-meta" data-i18n="proj2_wi_meta">AES · ECDSA · Blockchain</div>
+      </a>
+    </div>
+
+    <div class="case-grid">
+      <article id="work-nav" class="ledger-sheet case-file">
+        <div class="stamp" data-i18n="proj1_stamp">In<br>Progress</div>
+        <div class="entry-head">
+          <span class="entry-no">WORK 01</span>
+          <span class="entry-dates" data-i18n="proj1_dates">Jul 2025 — Jun 2026</span>
+        </div>
+        <div class="entry-title" data-i18n="proj1_title">AI-Assisted Mobile Navigation for the Visually Impaired</div>
+        <div class="entry-company" data-i18n="proj1_role">Capstone Project, University of Wollongong · AI Developer &amp; Team Lead (rotating)</div>
+        <p class="case-desc" data-i18n="proj1_desc">Leading a cross-functional team building a real-time object detection mobile app on YOLOv12 — managing dataset classification, model training pipelines, and delivery milestones through Agile methodology. Translating complex user needs into working technical solutions.</p>
+        <div class="case-stack-label" data-i18n="stack_label">Tech stack</div>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span><span class="tech-tag">YOLOv12</span>
+          <span class="tech-tag">Computer Vision</span><span class="tech-tag">Agile</span>
+        </div>
+        <div class="work-links">
+          <a class="link-btn disabled" href="#" data-i18n="link_demo">Demo (coming soon)</a>
+          <a class="link-btn disabled" href="#" data-i18n="link_github">GitHub (coming soon)</a>
+        </div>
+        <div class="shot-row">
+          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
+          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
+        </div>
+      </article>
+
+      <article id="work-secure" class="ledger-sheet case-file">
+        <div class="stamp" data-i18n="proj2_stamp">Verified<br>29 / 30</div>
+        <div class="entry-head">
+          <span class="entry-no">WORK 02</span>
+          <span class="entry-dates" data-i18n="proj2_dates">Sep 2025 — Nov 2025</span>
+        </div>
+        <div class="entry-title" data-i18n="proj2_title">Blockchain-Based Secure File Sharing System</div>
+        <div class="entry-company" data-i18n="proj2_role">Backend Developer, University of Wollongong</div>
+        <p class="case-desc" data-i18n="proj2_desc">Implemented AES symmetric encryption and ECDSA digital signatures for end-to-end data security, with a blockchain ledger for tamper-resistant access logging. Scored 29/30 for technical implementation and security architecture.</p>
+        <div class="case-stack-label" data-i18n="stack_label">Tech stack</div>
+        <div class="tech-tags">
+          <span class="tech-tag">AES</span><span class="tech-tag">ECDSA</span>
+          <span class="tech-tag">Blockchain</span><span class="tech-tag">Python</span>
+        </div>
+        <div class="work-links">
+          <a class="link-btn disabled" href="#" data-i18n="link_demo">Demo (coming soon)</a>
+          <a class="link-btn disabled" href="#" data-i18n="link_github">GitHub (coming soon)</a>
+        </div>
+        <div class="shot-row">
+          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
+          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -502,80 +617,6 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="reveal">
-    <div class="eyebrow" data-i18n="projects_eyebrow">Audit Trail</div>
-    <h2 data-i18n="projects_heading">Academic &amp; Technical Projects</h2>
-    <p class="projects-intro" data-i18n="projects_intro">New builds get logged here as they ship — this ledger grows with every project.</p>
-
-    <div class="case-grid">
-      <div class="ledger-sheet case-file">
-        <div class="stamp" data-i18n="proj1_stamp">In<br>Progress</div>
-        <div class="entry-head">
-          <span class="entry-no">CASE FILE 004</span>
-          <span class="entry-dates" data-i18n="proj1_dates">Jul 2025 — Jun 2026</span>
-        </div>
-        <div class="entry-title" data-i18n="proj1_title">AI-Assisted Mobile Navigation for the Visually Impaired</div>
-        <div class="entry-company" data-i18n="proj1_role">Capstone Project, University of Wollongong · AI Developer &amp; Team Lead (rotating)</div>
-        <p class="case-desc" data-i18n="proj1_desc">Leading a cross-functional team building a real-time object detection mobile app on YOLOv12 — managing dataset classification, model training pipelines, and delivery milestones through Agile methodology. Translating complex user needs into working technical solutions.</p>
-        <div class="tech-tags">
-          <span class="tech-tag">Python</span><span class="tech-tag">YOLOv12</span>
-          <span class="tech-tag">Computer Vision</span><span class="tech-tag">Agile</span>
-        </div>
-        <!-- 実際のリンクができたら href="#" を差し替えてください -->
-        <div class="work-links">
-          <a class="link-btn disabled" href="#" data-i18n="link_demo">Demo (coming soon)</a>
-          <a class="link-btn disabled" href="#" data-i18n="link_github">GitHub (coming soon)</a>
-        </div>
-        <div class="shot-row">
-          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
-          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
-        </div>
-      </div>
-
-      <div class="ledger-sheet case-file">
-        <div class="stamp" data-i18n="proj2_stamp">Verified<br>29 / 30</div>
-        <div class="entry-head">
-          <span class="entry-no">CASE FILE 005</span>
-          <span class="entry-dates" data-i18n="proj2_dates">Sep 2025 — Nov 2025</span>
-        </div>
-        <div class="entry-title" data-i18n="proj2_title">Blockchain-Based Secure File Sharing System</div>
-        <div class="entry-company" data-i18n="proj2_role">Backend Developer, University of Wollongong</div>
-        <p class="case-desc" data-i18n="proj2_desc">Implemented AES symmetric encryption and ECDSA digital signatures for end-to-end data security, with a blockchain ledger for tamper-resistant access logging. Scored 29/30 for technical implementation and security architecture.</p>
-        <div class="tech-tags">
-          <span class="tech-tag">AES</span><span class="tech-tag">ECDSA</span>
-          <span class="tech-tag">Blockchain</span><span class="tech-tag">Python</span>
-        </div>
-        <div class="work-links">
-          <a class="link-btn disabled" href="#" data-i18n="link_demo">Demo (coming soon)</a>
-          <a class="link-btn disabled" href="#" data-i18n="link_github">GitHub (coming soon)</a>
-        </div>
-        <div class="shot-row">
-          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
-          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
-        </div>
-      </div>
-
-      <div class="ledger-sheet case-file work-card--empty">
-        <div class="entry-head">
-          <span class="entry-no">CASE FILE 006</span>
-          <span class="entry-dates" data-i18n="proj_empty_dates">Reserved</span>
-        </div>
-        <div class="entry-title" data-i18n="proj_empty_title">— your next build goes here —</div>
-        <p class="case-desc" data-i18n="proj_empty_desc">A web app, a support tool, an infrastructure build — once you ship something new, log it in this entry: title, tech stack, links, and a couple of screenshots.</p>
-      </div>
-
-      <div class="ledger-sheet case-file work-card--empty">
-        <div class="entry-head">
-          <span class="entry-no">CASE FILE 007</span>
-          <span class="entry-dates" data-i18n="proj_empty_dates">Reserved</span>
-        </div>
-        <div class="entry-title" data-i18n="proj_empty_title">— your next build goes here —</div>
-        <p class="case-desc" data-i18n="proj_empty_desc">A web app, a support tool, an infrastructure build — once you ship something new, log it in this entry: title, tech stack, links, and a couple of screenshots.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- EDUCATION -->
   <section id="education" class="reveal">
     <div class="eyebrow" data-i18n="education_eyebrow">Closing Balance</div>
@@ -622,9 +663,9 @@
 <script>
   const translations = {
     nav_profile:{en:"Profile",ja:"プロフィール"},
+    nav_works:{en:"Works",ja:"制作物"},
     nav_skills:{en:"Skills",ja:"スキル"},
     nav_experience:{en:"Experience",ja:"職歴"},
-    nav_projects:{en:"Projects",ja:"プロジェクト"},
     nav_education:{en:"Education",ja:"学歴"},
     nav_contact:{en:"Contact",ja:"連絡先"},
 
@@ -637,7 +678,7 @@
     meta_status_val:{en:"Open to work — IT Support / Software Engineering",ja:"求職中 ― ITサポート / ソフトウェアエンジニア"},
     meta_contact_label:{en:"Contact",ja:"連絡先"},
 
-    hero_cta_projects:{en:"View Case Files",ja:"プロジェクトを見る"},
+    hero_cta_projects:{en:"View Works",ja:"制作物を見る"},
     hero_cta_contact:{en:"Get in Touch",ja:"連絡する"},
 
     profile_eyebrow:{en:"Opening Balance",ja:"期首残高"},
@@ -679,16 +720,16 @@
     exp2_b4:{en:"Coordinated with cross-border teams in Japan and Vietnam on technical documentation and training for 30+ colleagues, in English and Japanese.",ja:"日本とベトナムの部門横断チームと連携し、30名超の同僚に対して英語・日本語で技術文書の整備と研修を実施。"},
 
     projects_eyebrow:{en:"Audit Trail",ja:"監査証跡"},
-    projects_heading:{en:"Academic &amp; Technical Projects",ja:"学術・技術プロジェクト"},
-    projects_intro:{en:"New builds get logged here as they ship — this ledger grows with every project.",ja:"新しく開発したものはここに随時追加していきます。作品が増えるたびに、この台帳も育っていきます。"},
+    projects_heading:{en:"Works",ja:"制作物"},
+    projects_intro:{en:"A selection of apps and systems I've built — from AI mobile navigation to secure file sharing. More entries as new work ships.",
+      ja:"これまでに手がけたアプリやシステムのなかから、腕によりをかけて作った成果物をご紹介します。新しい作品ができたら、随時ここに追加していきます。"},
+    stack_label:{en:"Tech stack",ja:"使用技術"},
     link_demo:{en:"Demo (coming soon)",ja:"デモ（準備中）"},
     link_github:{en:"GitHub (coming soon)",ja:"GitHub（準備中）"},
     shot_placeholder:{en:"+ Add<br>screenshot",ja:"+ 画像を<br>追加"},
-    proj_empty_dates:{en:"Reserved",ja:"予約枠"},
-    proj_empty_title:{en:"— your next build goes here —",ja:"— 次の作品はここに —"},
-    proj_empty_desc:{en:"A web app, a support tool, an infrastructure build — once you ship something new, log it in this entry: title, tech stack, links, and a couple of screenshots.",
-      ja:"Webアプリでも、業務ツールでも、インフラ構築でも構いません。何か新しく作ったら、タイトル・使用技術・リンク・スクリーンショットをこの枠に追加してください。"},
 
+    proj1_short:{en:"AI Mobile Navigation",ja:"AIモバイルナビ"},
+    proj1_wi_meta:{en:"YOLOv12 · Capstone",ja:"YOLOv12 ・ 卒業研究"},
     proj1_stamp:{en:"In<br>Progress",ja:"進行中"},
     proj1_dates:{en:"Jul 2025 — Jun 2026",ja:"2025年7月 ― 2026年6月"},
     proj1_title:{en:"AI-Assisted Mobile Navigation for the Visually Impaired",ja:"視覚障がい者向けAI支援モバイルナビゲーション"},
@@ -696,6 +737,8 @@
     proj1_desc:{en:"Leading a cross-functional team building a real-time object detection mobile app on YOLOv12 — managing dataset classification, model training pipelines, and delivery milestones through Agile methodology. Translating complex user needs into working technical solutions.",
       ja:"YOLOv12を用いたリアルタイム物体検出モバイルアプリの開発を、部門横断チームを率いて推進。データセットの分類、モデル学習パイプラインの構築、アジャイル手法によるマイルストーン管理を担当し、複雑なユーザーニーズを実装可能な技術要件へ落とし込んでいる。"},
 
+    proj2_short:{en:"Secure File Sharing",ja:"セキュアファイル共有"},
+    proj2_wi_meta:{en:"AES · ECDSA · Blockchain",ja:"AES ・ ECDSA ・ ブロックチェーン"},
     proj2_stamp:{en:"Verified<br>29 / 30",ja:"検証済<br>29 / 30"},
     proj2_dates:{en:"Sep 2025 — Nov 2025",ja:"2025年9月 ― 2025年11月"},
     proj2_title:{en:"Blockchain-Based Secure File Sharing System",ja:"ブロックチェーン型セキュアファイル共有システム"},
