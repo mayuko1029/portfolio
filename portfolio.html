@@ -3,29 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mayuko Kamazuka — Career Ledger</title>
+<title>Mayuko Kamazuka — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;0,700;0,900;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper: #F4F7F1;
-    --paper-alt: #EDF3E9;
-    --rule: #CFE0C9;
-    --rule-strong: #9CBB93;
-    --ink: #1E2A22;
-    --ink-soft: #52604F;
-    --ink-faint: #85937F;
-    --green: #224c8c;
-    --green-dark: #204C36;
-    --red: #B0392C;
-    --red-soft: #C97A6D;
-    --surface: #FBFCF9;
-    --shadow: 0 1px 0 rgba(30,42,34,0.06);
-    --max: 920px;
-    --font-display: 'Alegreya', Georgia, serif;
-    --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
-    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --bg: #e9ecef;
+    --bg-soft: #f3f4f6;
+    --surface: #ffffff;
+    --ink: #3a3f46;
+    --ink-soft: #6b7280;
+    --ink-faint: #9ca3af;
+    --accent: #2d9a8f;
+    --accent-dark: #217a71;
+    --rule: #d5d9de;
+    --max: 1080px;
+    --font: 'Outfit', 'Noto Sans JP', sans-serif;
   }
 
   *{ box-sizing:border-box; }
@@ -33,15 +27,18 @@
 
   body{
     margin:0;
-    background:var(--paper);
     color:var(--ink);
-    font-family:var(--font-body);
-    line-height:1.6;
+    font-family:var(--font);
+    line-height:1.65;
     -webkit-font-smoothing:antialiased;
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)),
+      repeating-conic-gradient(from 0deg, #dde1e5 0% 25%, #e9ecef 0% 50%);
+    background-size:auto, 18px 18px;
   }
 
-  ::selection{ background:var(--green); color:#fff; }
-
+  ::selection{ background:var(--accent); color:#fff; }
   a{ color:inherit; }
 
   .wrap{
@@ -50,374 +47,606 @@
     padding:0 28px;
   }
 
-  /* ---------- Ledger sheet texture (used on cards) ---------- */
-  .ledger-sheet{
-    position:relative;
-    background:
-      repeating-linear-gradient(to bottom, transparent, transparent 30px, var(--rule) 31px),
-      var(--surface);
-    border:1px solid var(--rule-strong);
-    border-radius:2px;
-    padding:28px 28px 28px 56px;
-    box-shadow: 0 1px 3px rgba(30,42,34,0.06);
-  }
-  .ledger-sheet::before{
-    content:"";
-    position:absolute;
-    top:0; bottom:0; left:38px;
-    width:1.5px;
-    background:var(--red-soft);
-    opacity:0.55;
-  }
-
-  /* ---------- Header / nav ---------- */
+  /* ---------- Nav ---------- */
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(244,247,241,0.92);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--rule-strong);
+    background:rgba(243,244,246,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(0,0,0,0.05);
   }
   .nav-inner{
     display:flex; align-items:center; justify-content:space-between;
-    padding:16px 28px;
+    padding:14px 28px;
     max-width:var(--max);
     margin:0 auto;
     gap:16px;
     flex-wrap:wrap;
   }
   .brand{
-    font-family:var(--font-mono);
-    font-size:13px;
-    letter-spacing:0.06em;
-    color:var(--ink-soft);
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:0.02em;
     text-decoration:none;
-    white-space:nowrap;
+    color:var(--ink);
   }
-  .brand b{ color:var(--ink); }
   nav.links{
-    display:flex; gap:22px; flex-wrap:wrap;
-    font-family:var(--font-mono);
-    font-size:12.5px;
-    letter-spacing:0.04em;
+    display:flex; gap:20px; flex-wrap:wrap;
+    font-size:13.5px;
+    font-weight:500;
   }
   nav.links a{
     text-decoration:none;
     color:var(--ink-soft);
-    padding-bottom:2px;
-    border-bottom:1px solid transparent;
-    transition:border-color .2s, color .2s;
+    transition:color .2s;
   }
-  nav.links a:hover{ color:var(--green-dark); border-color:var(--green); }
+  nav.links a:hover{ color:var(--accent-dark); }
 
   .lang-toggle{ display:flex; gap:6px; }
   .lang-btn{
-    font-family:var(--font-mono);
-    font-size:11px;
-    letter-spacing:0.06em;
-    padding:5px 10px;
-    border:1px solid var(--rule-strong);
-    background:transparent;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:600;
+    padding:6px 12px;
+    border:1px solid var(--rule);
+    background:var(--surface);
     color:var(--ink-soft);
-    border-radius:2px;
+    border-radius:999px;
     cursor:pointer;
     transition:all .2s;
   }
-  .lang-btn.active{ background:var(--green); color:#fff; border-color:var(--green); }
-  .lang-btn:hover:not(.active){ border-color:var(--green); color:var(--green-dark); }
+  .lang-btn.active{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .lang-btn:hover:not(.active){ border-color:var(--accent); color:var(--accent-dark); }
 
-  /* ---------- eyebrow / labels ---------- */
-  .eyebrow{
-    font-family:var(--font-mono);
-    font-size:12px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    color:var(--green-dark);
-    display:flex; align-items:center; gap:10px;
-    margin-bottom:14px;
+  /* ---------- Sections ---------- */
+  section{ padding:72px 0; }
+  .section-head{ text-align:center; margin-bottom:40px; }
+  .section-head h2{
+    margin:0 0 12px;
+    font-size:clamp(34px,5vw,48px);
+    font-weight:800;
+    letter-spacing:-0.02em;
+    color:#2f343a;
   }
-  .eyebrow::before{
-    content:"";
-    width:22px; height:1px;
-    background:var(--green);
-  }
-
-  h1,h2,h3{ font-family:var(--font-display); font-weight:700; margin:0; }
-
-  /* ---------- Hero ---------- */
-  .hero{ padding:96px 0 64px; }
-  .hero-eyebrow{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--red); margin-bottom:18px; }
-  .hero h1{
-    font-size:clamp(40px,7vw,68px);
-    font-style:italic;
-    font-weight:900;
-    line-height:1.05;
-    letter-spacing:-0.01em;
-    margin-bottom:14px;
-  }
-  .hero-role{
-    font-family:var(--font-mono);
+  .section-head p{
+    margin:0 auto;
+    max-width:560px;
     font-size:15px;
     color:var(--ink-soft);
-    letter-spacing:0.02em;
-    margin-bottom:22px;
   }
-  .hero-sub{
-    max-width:600px;
-    font-size:17px;
-    color:var(--ink);
-    margin-bottom:36px;
-  }
-  .ledger-meta{
-    border-top:1px solid var(--rule-strong);
-    border-bottom:1px solid var(--rule-strong);
-    padding:18px 0;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-    margin-bottom:34px;
-  }
-  .meta-item .meta-label{
-    font-family:var(--font-mono);
-    font-size:10.5px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:var(--ink-faint);
-    margin-bottom:5px;
-  }
-  .meta-item .meta-val{ font-size:14.5px; color:var(--ink); }
-  .meta-item .meta-val a{ text-decoration:none; border-bottom:1px solid var(--rule-strong); }
-  .meta-item .meta-val a:hover{ border-color:var(--green); color:var(--green-dark); }
 
-  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
-  .btn{
-    font-family:var(--font-mono);
-    font-size:13px;
-    letter-spacing:0.04em;
-    padding:12px 20px;
-    border-radius:2px;
-    text-decoration:none;
-    display:inline-block;
-    transition:transform .15s, box-shadow .15s;
-  }
-  .btn-primary{ background:var(--green); color:#fff; }
-  .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 4px 10px rgba(47,111,78,0.25); }
-  .btn-ghost{ border:1px solid var(--rule-strong); color:var(--ink); }
-  .btn-ghost:hover{ border-color:var(--green); color:var(--green-dark); }
-
-  /* ---------- generic section ---------- */
-  section{ padding:64px 0; }
-  section h2{ font-size:clamp(26px,4vw,32px); margin-bottom:30px; }
-  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .65s ease, transform .65s ease; }
   .reveal.visible{ opacity:1; transform:translateY(0); }
 
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:100px 0 72px;
+    text-align:center;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    width:min(720px,90%);
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--rule), transparent);
+  }
+  .hero-kicker{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent-dark);
+    margin-bottom:18px;
+    opacity:0;
+    animation:fadeUp .7s .1s forwards;
+  }
+  .hero h1{
+    margin:0 0 14px;
+    font-size:clamp(44px,8vw,76px);
+    font-weight:800;
+    letter-spacing:-0.03em;
+    line-height:1.05;
+    color:#2a2f35;
+    opacity:0;
+    animation:fadeUp .7s .2s forwards;
+  }
+  .hero-role{
+    font-size:clamp(15px,2vw,18px);
+    font-weight:500;
+    color:var(--ink-soft);
+    margin-bottom:20px;
+    opacity:0;
+    animation:fadeUp .7s .32s forwards;
+  }
+  .hero-sub{
+    max-width:560px;
+    margin:0 auto 32px;
+    font-size:16px;
+    color:var(--ink);
+    opacity:0;
+    animation:fadeUp .7s .42s forwards;
+  }
+  .hero-ctas{
+    display:flex; gap:12px; flex-wrap:wrap; justify-content:center;
+    opacity:0;
+    animation:fadeUp .7s .52s forwards;
+  }
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(12px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .btn{
+    font-family:inherit;
+    font-size:14px;
+    font-weight:600;
+    padding:12px 22px;
+    border-radius:999px;
+    text-decoration:none;
+    display:inline-block;
+    transition:transform .15s, box-shadow .2s, background .2s;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#fff;
+    box-shadow:0 8px 20px rgba(45,154,143,0.28);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--accent-dark); }
+  .btn-ghost{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{ border-color:var(--accent); color:var(--accent-dark); }
+
   /* ---------- Profile ---------- */
+  #profile .section-head{ margin-bottom:32px; }
   .profile-layout{
     display:grid;
-    grid-template-columns:auto 1fr;
-    gap:32px;
-    align-items:start;
+    grid-template-columns:200px 1fr;
+    gap:36px;
+    align-items:center;
+    max-width:820px;
+    margin:0 auto;
+    background:var(--surface);
+    border-radius:16px;
+    padding:36px;
+    box-shadow:0 10px 30px rgba(50,60,70,0.06);
   }
   .profile-photo{
-    width:min(200px, 42vw);
+    margin:0;
+    width:200px;
     aspect-ratio:1;
-    flex-shrink:0;
-    border:1px solid var(--rule-strong);
-    border-radius:2px;
+    border-radius:50%;
     overflow:hidden;
-    box-shadow:0 1px 3px rgba(30,42,34,0.06);
-    background:var(--surface);
+    box-shadow:0 8px 24px rgba(50,60,70,0.12);
   }
   .profile-photo img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .profile-layout p{
+    margin:0;
+    font-size:15.5px;
+    color:var(--ink);
+  }
+
+  /* ---------- Works ---------- */
+  #works{ padding-top:80px; }
+  .works-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:36px 28px;
+  }
+  @media (max-width:800px){
+    .works-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:520px){
+    .works-grid{ grid-template-columns:1fr; max-width:360px; margin:0 auto; }
+  }
+
+  .work-card{
+    appearance:none;
+    border:none;
+    background:transparent;
+    padding:0;
+    cursor:pointer;
+    text-align:center;
+    font:inherit;
+    color:inherit;
     width:100%;
-    height:100%;
-    object-fit:cover;
+  }
+  .work-card:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:6px;
+    border-radius:8px;
+  }
+  .work-card-thumb{
+    width:100%;
+    aspect-ratio:16/10;
+    border-radius:10px;
+    overflow:hidden;
+    background:#dfe3e8;
+    box-shadow:0 8px 22px rgba(50,60,70,0.1);
+    transition:transform .25s ease, box-shadow .25s ease;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .work-card:hover .work-card-thumb{
+    transform:translateY(-4px) scale(1.01);
+    box-shadow:0 14px 28px rgba(50,60,70,0.14);
+  }
+  .work-card-thumb img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .work-card-thumb .thumb-fallback{
+    font-size:13px;
+    color:var(--ink-faint);
+    font-weight:500;
+    padding:16px;
+  }
+  .work-card-title{
+    margin-top:14px;
+    font-size:16px;
+    font-weight:600;
+    color:#4b5563;
+  }
+
+  /* ---------- Modal ---------- */
+  .work-modal{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+  .work-modal.open{ display:flex; }
+  .work-modal-backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(40,48,56,0.5);
+    backdrop-filter:blur(3px);
+  }
+  .work-modal-panel{
+    position:relative;
+    z-index:1;
+    width:min(980px,100%);
+    max-height:min(90vh,860px);
+    overflow:auto;
+    background:var(--surface);
+    border-radius:14px;
+    box-shadow:0 24px 60px rgba(30,40,50,0.28);
+    display:grid;
+    grid-template-columns:1fr 1.05fr;
+    animation:modalIn .28s ease;
+  }
+  @keyframes modalIn{
+    from{ opacity:0; transform:translateY(12px) scale(0.98); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
+  }
+  @media (max-width:780px){
+    .work-modal-panel{ grid-template-columns:1fr; }
+  }
+  .work-modal-close{
+    position:absolute;
+    top:14px;
+    right:14px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:none;
+    background:var(--accent);
+    color:#fff;
+    font-size:22px;
+    line-height:1;
+    cursor:pointer;
+    z-index:2;
+    box-shadow:0 4px 12px rgba(45,154,143,0.35);
+    transition:background .2s, transform .15s;
+  }
+  .work-modal-close:hover{ background:var(--accent-dark); transform:scale(1.05); }
+
+  .work-modal-info{
+    padding:40px 32px 36px 36px;
+  }
+  .ruled-title{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:0 0 18px;
+    padding-right:36px;
+  }
+  .ruled-title::before,
+  .ruled-title::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--rule);
+  }
+  .ruled-title h3{
+    margin:0;
+    font-size:clamp(20px,2.4vw,26px);
+    font-weight:700;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:70%;
+  }
+  .work-modal-role{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:0 0 14px;
+    text-align:center;
+  }
+  .work-modal-desc{
+    font-size:14.5px;
+    color:var(--ink);
+    margin:0 0 20px;
+    line-height:1.75;
+  }
+  .work-links{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin:0 0 28px;
+  }
+  .link-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    font-weight:600;
+    color:#3b82c4;
+    text-decoration:none;
+    transition:color .2s;
+  }
+  .link-btn:hover{ color:var(--accent-dark); }
+  .link-btn.disabled{
+    color:var(--ink-faint);
+    pointer-events:none;
+  }
+  .link-btn svg{ width:18px; height:18px; flex-shrink:0; }
+
+  .stack-block{ margin-top:8px; }
+  .stack-block .ruled-title{
+    margin-bottom:14px;
+  }
+  .stack-block .ruled-title span{
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+  .stack-list{
+    list-style:disc;
+    margin:0;
+    padding-left:22px;
+    font-size:14px;
+    color:var(--ink);
+  }
+  .stack-list li{ margin-bottom:4px; }
+
+  .work-modal-gallery{
+    padding:28px 24px 24px;
+    background:var(--bg-soft);
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .work-modal-thumbs{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .work-modal-thumbs button{
+    width:68px;
+    height:46px;
+    padding:0;
+    border:2px solid transparent;
+    border-radius:4px;
+    overflow:hidden;
+    cursor:pointer;
+    background:#fff;
+    box-shadow:0 1px 4px rgba(0,0,0,0.08);
+  }
+  .work-modal-thumbs button.active{
+    border-color:var(--accent);
+  }
+  .work-modal-thumbs img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .work-modal-main{
+    border-radius:6px;
+    overflow:hidden;
+    background:#fff;
+    min-height:240px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 4px 16px rgba(50,60,70,0.08);
+  }
+  .work-modal-main img{
+    width:100%;
+    height:auto;
+    max-height:440px;
+    object-fit:contain;
     display:block;
   }
-  #profile p{ max-width:680px; font-size:16px; color:var(--ink); margin:0; }
+  .work-modal-main .no-shot{
+    font-size:13px;
+    color:var(--ink-faint);
+    padding:32px;
+    text-align:center;
+  }
+  body.modal-open{ overflow:hidden; }
 
   /* ---------- Skills ---------- */
   .skills-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:1px;
-    background:var(--rule-strong);
-    border:1px solid var(--rule-strong);
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;
   }
-  .skill-cat{ background:var(--surface); padding:22px; }
+  .skill-cat{
+    background:var(--surface);
+    border-radius:12px;
+    padding:22px 20px;
+    box-shadow:0 6px 18px rgba(50,60,70,0.05);
+  }
   .skill-cat h3{
-    font-family:var(--font-mono);
-    font-size:12px;
-    letter-spacing:0.08em;
+    margin:0 0 12px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.06em;
     text-transform:uppercase;
-    color:var(--green-dark);
-    font-weight:600;
-    margin-bottom:12px;
+    color:var(--accent-dark);
   }
-  .skill-cat ul{ list-style:none; padding:0; margin:0; font-size:14px; color:var(--ink); }
-  .skill-cat li{ padding:4px 0; border-top:1px dashed var(--rule); }
+  .skill-cat ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+    font-size:14px;
+  }
+  .skill-cat li{
+    padding:5px 0;
+    color:var(--ink);
+    border-top:1px solid #eef0f3;
+  }
   .skill-cat li:first-child{ border-top:none; }
 
-  /* ---------- Ledger entries (experience) ---------- */
-  .entry{ margin-bottom:26px; }
-  .entry-head{
-    display:flex; justify-content:space-between; align-items:baseline;
-    flex-wrap:wrap; gap:8px;
-    margin-bottom:10px;
+  /* ---------- Experience ---------- */
+  .timeline{
+    max-width:780px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
   }
-  .entry-no{ font-family:var(--font-mono); font-size:12px; color:var(--red); letter-spacing:0.06em; }
-  .entry-dates{ font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); }
-  .entry-title{ font-family:var(--font-display); font-size:21px; font-weight:700; margin-bottom:2px; }
-  .entry-company{ font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); margin-bottom:14px; }
-  .entry ul{ margin:0; padding-left:18px; font-size:14.5px; color:var(--ink); }
-  .entry li{ margin-bottom:6px; }
-
-  /* ---------- Works / projects ---------- */
-  .projects-intro{ max-width:620px; font-size:15px; color:var(--ink-soft); margin:-14px 0 28px; }
-
-  .works-index{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:14px;
-    margin-bottom:40px;
-  }
-  .works-index a{
-    display:block;
-    text-decoration:none;
+  .entry{
     background:var(--surface);
-    border:1px solid var(--rule-strong);
-    border-radius:2px;
-    padding:22px 18px;
-    transition:border-color .2s, transform .15s, box-shadow .15s;
-    box-shadow:var(--shadow);
+    border-radius:12px;
+    padding:26px 28px;
+    box-shadow:0 6px 18px rgba(50,60,70,0.05);
   }
-  .works-index a:hover{
-    border-color:var(--green);
-    transform:translateY(-2px);
-    box-shadow:0 4px 12px rgba(30,42,34,0.08);
-  }
-  .works-index .wi-no{
-    font-family:var(--font-mono);
-    font-size:11px;
-    letter-spacing:0.08em;
-    color:var(--red);
-    margin-bottom:8px;
-  }
-  .works-index .wi-title{
-    font-family:var(--font-display);
-    font-size:18px;
-    font-weight:700;
-    color:var(--ink);
-    line-height:1.3;
+  .entry-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:8px;
     margin-bottom:6px;
   }
-  .works-index .wi-meta{
-    font-family:var(--font-mono);
-    font-size:11.5px;
-    color:var(--ink-faint);
+  .entry-dates{
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--accent-dark);
   }
-
-  .case-grid{ display:grid; grid-template-columns:1fr; gap:28px; }
-  .case-file{ position:relative; scroll-margin-top:80px; }
-  .case-file .entry-title{ font-size:22px; }
-  .case-desc{ font-size:14.5px; color:var(--ink); margin:10px 0 16px; max-width:640px; }
-  .case-stack-label{
-    font-family:var(--font-mono);
-    font-size:11px;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:var(--green-dark);
-    margin:0 0 8px;
+  .entry-title{
+    margin:0 0 4px;
+    font-size:20px;
+    font-weight:700;
   }
-
-  .tech-tags{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px; }
-  .tech-tag{
-    font-family:var(--font-mono); font-size:11px; letter-spacing:0.03em;
-    padding:4px 10px; border:1px solid var(--rule-strong); border-radius:2px;
-    color:var(--ink-soft); background:var(--paper-alt);
+  .entry-company{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin-bottom:12px;
   }
-
-  .work-links{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px; }
-  .link-btn{
-    font-family:var(--font-mono); font-size:12px; letter-spacing:0.02em;
-    padding:8px 14px; border:1px solid var(--green); color:var(--green-dark);
-    border-radius:2px; text-decoration:none; transition:all .2s; background:transparent;
+  .entry ul{
+    margin:0;
+    padding-left:18px;
+    font-size:14.5px;
   }
-  .link-btn:hover{ background:var(--green); color:#fff; }
-  .link-btn.disabled{
-    border-style:dashed; border-color:var(--rule-strong); color:var(--ink-faint);
-    pointer-events:none;
-  }
-
-  .shot-row{ display:flex; gap:10px; flex-wrap:wrap; }
-  .shot-placeholder{
-    width:150px; height:96px; border:1.5px dashed var(--rule-strong); border-radius:2px;
-    display:flex; align-items:center; justify-content:center; text-align:center; padding:8px;
-    font-family:var(--font-mono); font-size:10.5px; color:var(--ink-faint); background:var(--paper);
-  }
-  .shot-placeholder img{ width:100%; height:100%; object-fit:cover; border-radius:1px; }
-
-  .stamp{
-    font-family:var(--font-mono);
-    font-size:11px;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:var(--red);
-    border:2px solid var(--red);
-    border-radius:50%;
-    width:92px; height:92px;
-    display:flex; align-items:center; justify-content:center;
-    text-align:center;
-    transform:rotate(-8deg);
-    position:absolute;
-    top:22px; right:22px;
-    opacity:0.85;
-    mix-blend-mode:multiply;
-    line-height:1.2;
-    padding:6px;
-  }
-  .stamp::before{
-    content:"";
-    position:absolute;
-    inset:5px;
-    border:1px solid var(--red);
-    border-radius:50%;
-  }
+  .entry li{ margin-bottom:6px; }
 
   /* ---------- Education ---------- */
-  .edu-card{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; align-items:baseline; }
-  .edu-degree{ font-family:var(--font-display); font-size:22px; font-weight:700; }
-  .edu-school{ font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); margin-top:4px; }
-  .edu-date{ font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); }
+  .edu-card{
+    max-width:780px;
+    margin:0 auto;
+    background:var(--surface);
+    border-radius:12px;
+    padding:28px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:14px;
+    align-items:baseline;
+    box-shadow:0 6px 18px rgba(50,60,70,0.05);
+  }
+  .edu-degree{ font-size:22px; font-weight:700; }
+  .edu-school{ font-size:14px; color:var(--ink-soft); margin-top:6px; }
+  .edu-date{ font-size:13px; font-weight:600; color:var(--accent-dark); }
 
-  /* ---------- Contact / footer ---------- */
-  #contact{ text-align:left; }
-  .contact-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:22px; margin-top:24px; }
-  .contact-item .meta-label{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px; }
-  .contact-item .meta-val{ font-size:15px; }
-  .contact-item .meta-val a{ text-decoration:none; border-bottom:1px solid var(--rule-strong); }
-  .contact-item .meta-val a:hover{ border-color:var(--green); color:var(--green-dark); }
+  /* ---------- Contact ---------- */
+  #contact .section-head{ margin-bottom:28px; }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    max-width:780px;
+    margin:0 auto;
+  }
+  .contact-item{
+    background:var(--surface);
+    border-radius:12px;
+    padding:22px;
+    text-align:center;
+    box-shadow:0 6px 18px rgba(50,60,70,0.05);
+  }
+  .contact-item .meta-label{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:8px;
+  }
+  .contact-item .meta-val{ font-size:15px; font-weight:500; }
+  .contact-item .meta-val a{
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:color .2s, border-color .2s;
+  }
+  .contact-item .meta-val a:hover{
+    color:var(--accent-dark);
+    border-color:var(--accent);
+  }
 
   footer{
-    border-top:1px solid var(--rule-strong);
-    padding:30px 0 60px;
-    font-family:var(--font-mono);
-    font-size:12px;
+    padding:36px 0 56px;
+    font-size:13px;
     color:var(--ink-faint);
-    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    border-top:1px solid rgba(0,0,0,0.06);
+    margin-top:24px;
   }
 
   @media (max-width:640px){
-    .profile-layout{ grid-template-columns:1fr; justify-items:center; text-align:center; }
-    .profile-layout p{ max-width:none; }
-    .ledger-meta{ grid-template-columns:1fr; }
-    .ledger-sheet{ padding:24px 18px 24px 42px; }
-    .ledger-sheet::before{ left:24px; }
-    .stamp{ position:static; margin-bottom:14px; transform:rotate(-4deg); }
+    .profile-layout{
+      grid-template-columns:1fr;
+      justify-items:center;
+      text-align:center;
+      padding:28px 22px;
+    }
+    .contact-grid{ grid-template-columns:1fr; }
   }
 
   @media (prefers-reduced-motion:reduce){
-    *{ transition:none !important; scroll-behavior:auto !important; }
-    .reveal{ opacity:1; transform:none; }
+    *, *::before, *::after{
+      animation:none !important;
+      transition:none !important;
+      scroll-behavior:auto !important;
+    }
+    .reveal, .hero-kicker, .hero h1, .hero-role, .hero-sub, .hero-ctas{
+      opacity:1; transform:none;
+    }
   }
 </style>
 </head>
@@ -425,7 +654,7 @@
 
 <header>
   <div class="nav-inner">
-    <a class="brand" href="#top"><b>M. KAMAZUKA</b> · LEDGER v1.0</a>
+    <a class="brand" href="#top">Mayuko Kamazuka</a>
     <nav class="links">
       <a href="#profile" data-i18n="nav_profile">Profile</a>
       <a href="#works" data-i18n="nav_works">Works</a>
@@ -443,38 +672,21 @@
 
 <main class="wrap" id="top">
 
-  <!-- HERO -->
   <section class="hero">
-    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Career Ledger — Entry No. 001</div>
+    <div class="hero-kicker" data-i18n="hero_eyebrow">Portfolio</div>
     <h1>Mayuko Kamazuka</h1>
     <div class="hero-role" data-i18n="hero_role">Computer Science Graduate — IT Support &amp; Software Engineering</div>
-    <p class="hero-sub" data-i18n="hero_sub">Six years of keeping business accounts precise now paired with a Master's in software engineering and cybersecurity — I bring the same discipline to systems that I once brought to ledgers.</p>
-
-    <div class="ledger-meta">
-      <div class="meta-item">
-        <div class="meta-label" data-i18n="meta_location_label">Location</div>
-        <div class="meta-val">Newcastle, NSW 2300</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label" data-i18n="meta_status_label">Status</div>
-        <div class="meta-val" data-i18n="meta_status_val">Open to work — IT Support / Software Engineering</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label" data-i18n="meta_contact_label">Contact</div>
-        <div class="meta-val"><a href="mailto:mkamazuka@gmail.com">mkamazuka@gmail.com</a></div>
-      </div>
-    </div>
-
+    <p class="hero-sub" data-i18n="hero_sub">Six years in accounting and consulting, now paired with a Master's in software engineering and cybersecurity — the same care for accuracy, applied to systems.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="#works" data-i18n="hero_cta_projects">View Works</a>
       <a class="btn btn-ghost" href="#contact" data-i18n="hero_cta_contact">Get in Touch</a>
     </div>
   </section>
 
-  <!-- PROFILE -->
   <section id="profile" class="reveal">
-    <div class="eyebrow" data-i18n="profile_eyebrow">Opening Balance</div>
-    <h2 data-i18n="profile_heading">Profile</h2>
+    <div class="section-head">
+      <h2 data-i18n="profile_heading">Profile</h2>
+    </div>
     <div class="profile-layout">
       <figure class="profile-photo">
         <img src="assets/profile.png" width="400" height="400" alt="Mayuko Kamazuka">
@@ -483,117 +695,18 @@
     </div>
   </section>
 
-  <!-- WORKS -->
   <section id="works" class="reveal">
-    <div class="eyebrow" data-i18n="projects_eyebrow">Audit Trail</div>
-    <h2 data-i18n="projects_heading">Works</h2>
-    <p class="projects-intro" data-i18n="projects_intro">A selection of apps and systems I've built — from expense tracking to AI navigation and secure file sharing. More entries as new work ships.</p>
-
-    <div class="works-index">
-      <a href="#work-expense">
-        <div class="wi-no">WORK 01</div>
-        <div class="wi-title" data-i18n="proj_ef_short">ExpenseFlow</div>
-        <div class="wi-meta" data-i18n="proj_ef_wi_meta">React · Spring Boot · Neon</div>
-      </a>
-      <a href="#work-nav">
-        <div class="wi-no">WORK 02</div>
-        <div class="wi-title" data-i18n="proj1_short">AI Mobile Navigation</div>
-        <div class="wi-meta" data-i18n="proj1_wi_meta">YOLOv12 · Capstone</div>
-      </a>
-      <a href="#work-secure">
-        <div class="wi-no">WORK 03</div>
-        <div class="wi-title" data-i18n="proj2_short">Secure File Sharing</div>
-        <div class="wi-meta" data-i18n="proj2_wi_meta">AES · ECDSA · Blockchain</div>
-      </a>
+    <div class="section-head">
+      <h2 data-i18n="projects_heading">Works</h2>
+      <p data-i18n="projects_intro">A selection of apps and systems I've built. Click a thumbnail to see the details.</p>
     </div>
-
-    <div class="case-grid">
-      <article id="work-expense" class="ledger-sheet case-file">
-        <div class="stamp" data-i18n="proj_ef_stamp">Live</div>
-        <div class="entry-head">
-          <span class="entry-no">WORK 01</span>
-          <span class="entry-dates" data-i18n="proj_ef_dates">2026 — Present</span>
-        </div>
-        <div class="entry-title" data-i18n="proj_ef_title">ExpenseFlow — Smart Expense &amp; Receipt Management</div>
-        <div class="entry-company" data-i18n="proj_ef_role">Personal project · Full-stack (deployed)</div>
-        <p class="case-desc" data-i18n="proj_ef_desc">Expense tracker that treats Personal vs Work-related as a first-class field, with Purpose notes for work spend, receipt uploads, filters, and dashboard charts. Full stack: React + TypeScript + Material UI frontend, Spring Boot API with JWT auth, and Neon PostgreSQL — deployed on Vercel and Render (free tier).</p>
-        <div class="case-stack-label" data-i18n="stack_label">Tech stack</div>
-        <div class="tech-tags">
-          <span class="tech-tag">React</span><span class="tech-tag">TypeScript</span>
-          <span class="tech-tag">Vite</span><span class="tech-tag">Material UI</span>
-          <span class="tech-tag">Chart.js</span>
-          <span class="tech-tag">Spring Boot</span><span class="tech-tag">JWT</span>
-          <span class="tech-tag">PostgreSQL</span><span class="tech-tag">Neon</span>
-          <span class="tech-tag">Vercel</span><span class="tech-tag">Render</span>
-        </div>
-        <div class="work-links">
-          <a class="link-btn" href="https://taxmate-au-ten.vercel.app" target="_blank" rel="noopener noreferrer" data-i18n="proj_ef_demo">Live demo</a>
-          <a class="link-btn" href="https://github.com/mayuko1029/taxmate-au" target="_blank" rel="noopener noreferrer" data-i18n="link_github_live">GitHub</a>
-        </div>
-        <div class="shot-row">
-          <div class="shot-placeholder">
-            <img src="assets/expenseflow-login.png" alt="ExpenseFlow login screen" width="300" height="192" loading="lazy">
-          </div>
-          <div class="shot-placeholder">
-            <img src="assets/expenseflow-dashboard.png" alt="ExpenseFlow dashboard with charts" width="300" height="192" loading="lazy">
-          </div>
-        </div>
-      </article>
-
-      <article id="work-nav" class="ledger-sheet case-file">
-        <div class="stamp" data-i18n="proj1_stamp">In<br>Progress</div>
-        <div class="entry-head">
-          <span class="entry-no">WORK 02</span>
-          <span class="entry-dates" data-i18n="proj1_dates">Jul 2025 — Jun 2026</span>
-        </div>
-        <div class="entry-title" data-i18n="proj1_title">AI-Assisted Mobile Navigation for the Visually Impaired</div>
-        <div class="entry-company" data-i18n="proj1_role">Capstone Project, University of Wollongong · AI Developer &amp; Team Lead (rotating)</div>
-        <p class="case-desc" data-i18n="proj1_desc">Leading a cross-functional team building a real-time object detection mobile app on YOLOv12 — managing dataset classification, model training pipelines, and delivery milestones through Agile methodology. Translating complex user needs into working technical solutions.</p>
-        <div class="case-stack-label" data-i18n="stack_label">Tech stack</div>
-        <div class="tech-tags">
-          <span class="tech-tag">Python</span><span class="tech-tag">YOLOv12</span>
-          <span class="tech-tag">Computer Vision</span><span class="tech-tag">Agile</span>
-        </div>
-        <div class="work-links">
-          <a class="link-btn disabled" href="#" data-i18n="link_demo">Demo (coming soon)</a>
-          <a class="link-btn disabled" href="#" data-i18n="link_github">GitHub (coming soon)</a>
-        </div>
-        <div class="shot-row">
-          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
-          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
-        </div>
-      </article>
-
-      <article id="work-secure" class="ledger-sheet case-file">
-        <div class="stamp" data-i18n="proj2_stamp">Verified<br>29 / 30</div>
-        <div class="entry-head">
-          <span class="entry-no">WORK 03</span>
-          <span class="entry-dates" data-i18n="proj2_dates">Sep 2025 — Nov 2025</span>
-        </div>
-        <div class="entry-title" data-i18n="proj2_title">Blockchain-Based Secure File Sharing System</div>
-        <div class="entry-company" data-i18n="proj2_role">Backend Developer, University of Wollongong</div>
-        <p class="case-desc" data-i18n="proj2_desc">Implemented AES symmetric encryption and ECDSA digital signatures for end-to-end data security, with a blockchain ledger for tamper-resistant access logging. Scored 29/30 for technical implementation and security architecture.</p>
-        <div class="case-stack-label" data-i18n="stack_label">Tech stack</div>
-        <div class="tech-tags">
-          <span class="tech-tag">AES</span><span class="tech-tag">ECDSA</span>
-          <span class="tech-tag">Blockchain</span><span class="tech-tag">Python</span>
-        </div>
-        <div class="work-links">
-          <a class="link-btn disabled" href="#" data-i18n="link_demo">Demo (coming soon)</a>
-          <a class="link-btn disabled" href="#" data-i18n="link_github">GitHub (coming soon)</a>
-        </div>
-        <div class="shot-row">
-          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
-          <div class="shot-placeholder" data-i18n="shot_placeholder">+ Add<br>screenshot</div>
-        </div>
-      </article>
-    </div>
+    <div class="works-grid" id="works-grid" role="list"></div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills" class="reveal">
-    <div class="eyebrow" data-i18n="skills_eyebrow">Chart of Accounts</div>
-    <h2 data-i18n="skills_heading">Skills</h2>
+    <div class="section-head">
+      <h2 data-i18n="skills_heading">Skills</h2>
+    </div>
     <div class="skills-grid">
       <div class="skill-cat">
         <h3 data-i18n="skills_cat1">Programming</h3>
@@ -618,31 +731,27 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience" class="reveal">
-    <div class="eyebrow" data-i18n="experience_eyebrow">Transaction History</div>
-    <h2 data-i18n="experience_heading">Professional Experience</h2>
-
-    <div class="ledger-sheet">
-      <div class="entry">
+    <div class="section-head">
+      <h2 data-i18n="experience_heading">Experience</h2>
+    </div>
+    <div class="timeline">
+      <article class="entry">
         <div class="entry-head">
-          <span class="entry-no">ENTRY 003</span>
+          <h3 class="entry-title" data-i18n="exp1_title">Remote Accounting Staff</h3>
           <span class="entry-dates" data-i18n="exp1_dates">2024 — Present</span>
         </div>
-        <div class="entry-title" data-i18n="exp1_title">Remote Accounting Staff</div>
         <div class="entry-company" data-i18n="exp1_company">Aoi Tax &amp; Consulting Group · Part-time</div>
         <ul>
           <li data-i18n="exp1_b1">Built a cloud-based procedures manual in Notion to standardise annual and monthly tax filing workflows, lifting team efficiency by 30%.</li>
           <li data-i18n="exp1_b2">Maintained accurate bookkeeping records under secure cloud file-handling protocols, reinforcing hands-on discipline around data integrity.</li>
         </ul>
-      </div>
-
-      <div class="entry" style="margin-bottom:0;">
+      </article>
+      <article class="entry">
         <div class="entry-head">
-          <span class="entry-no">ENTRY 002</span>
+          <h3 class="entry-title" data-i18n="exp2_title">Management &amp; Accounting Staff</h3>
           <span class="entry-dates" data-i18n="exp2_dates">2017 — 2023</span>
         </div>
-        <div class="entry-title" data-i18n="exp2_title">Management &amp; Accounting Staff</div>
         <div class="entry-company" data-i18n="exp2_company">I-Glocal Co., Ltd. · Japan &amp; Vietnam</div>
         <ul>
           <li data-i18n="exp2_b1">Helped migrate financial workflows from Excel to a cloud-integrated accounting system, cutting manual processing time by 40%.</li>
@@ -650,30 +759,28 @@
           <li data-i18n="exp2_b3">Managed contracts and consultations across a 1,000+ account portfolio, including ASX-listed companies.</li>
           <li data-i18n="exp2_b4">Coordinated with cross-border teams in Japan and Vietnam on technical documentation and training for 30+ colleagues, in English and Japanese.</li>
         </ul>
-      </div>
+      </article>
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section id="education" class="reveal">
-    <div class="eyebrow" data-i18n="education_eyebrow">Closing Balance</div>
-    <h2 data-i18n="education_heading">Education</h2>
-    <div class="ledger-sheet">
-      <div class="edu-card">
-        <div>
-          <div class="edu-degree" data-i18n="edu_degree">Master of Computer Science</div>
-          <div class="edu-school" data-i18n="edu_school">Software Engineering &amp; Cybersecurity · University of Wollongong</div>
-        </div>
-        <div class="edu-date" data-i18n="edu_date">Graduated July 2026</div>
+    <div class="section-head">
+      <h2 data-i18n="education_heading">Education</h2>
+    </div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree" data-i18n="edu_degree">Master of Computer Science</div>
+        <div class="edu-school" data-i18n="edu_school">Software Engineering &amp; Cybersecurity · University of Wollongong</div>
       </div>
+      <div class="edu-date" data-i18n="edu_date">Graduated July 2026</div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="reveal">
-    <div class="eyebrow" data-i18n="contact_eyebrow">Reconciliation</div>
-    <h2 data-i18n="contact_heading">Let's Talk</h2>
-    <p style="max-width:600px;" data-i18n="contact_body">Currently balancing the books on my next role. If you're looking for someone who can bridge day-to-day operations with hands-on engineering, I'd welcome the conversation.</p>
+    <div class="section-head">
+      <h2 data-i18n="contact_heading">Let's Talk</h2>
+      <p data-i18n="contact_body">Open to IT Support and Software Engineering roles. If you're looking for someone who bridges operations and hands-on engineering, I'd love to chat.</p>
+    </div>
     <div class="contact-grid">
       <div class="contact-item">
         <div class="meta-label" data-i18n="contact_email_label">Email</div>
@@ -693,11 +800,36 @@
 </main>
 
 <footer class="wrap">
-  <span data-i18n="footer_left">Ledger closed — balance carried forward.</span>
+  <span data-i18n="footer_left">Thanks for visiting.</span>
   <span>&copy; 2026 Mayuko Kamazuka</span>
 </footer>
 
+<!-- Work detail modal -->
+<div class="work-modal" id="work-modal" role="dialog" aria-modal="true" aria-labelledby="work-modal-title" hidden>
+  <div class="work-modal-backdrop" data-close-modal></div>
+  <div class="work-modal-panel">
+    <button type="button" class="work-modal-close" data-close-modal aria-label="Close">×</button>
+    <div class="work-modal-info">
+      <div class="ruled-title"><h3 id="work-modal-title"></h3></div>
+      <p class="work-modal-role" id="work-modal-role"></p>
+      <p class="work-modal-desc" id="work-modal-desc"></p>
+      <div class="work-links" id="work-modal-links"></div>
+      <div class="stack-block">
+        <div class="ruled-title"><span id="work-modal-stack-label"></span></div>
+        <ul class="stack-list" id="work-modal-stack"></ul>
+      </div>
+    </div>
+    <div class="work-modal-gallery">
+      <div class="work-modal-thumbs" id="work-modal-thumbs"></div>
+      <div class="work-modal-main" id="work-modal-main"></div>
+    </div>
+  </div>
+</div>
+
 <script>
+  const iconDemo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3V10z"/></svg>`;
+  const iconGithub = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.8c.85 0 1.7.12 2.5.34 1.9-1.32 2.74-1.05 2.74-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .26.18.59.69.48A10.05 10.05 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/></svg>`;
+
   const translations = {
     nav_profile:{en:"Profile",ja:"プロフィール"},
     nav_works:{en:"Works",ja:"制作物"},
@@ -706,24 +838,17 @@
     nav_education:{en:"Education",ja:"学歴"},
     nav_contact:{en:"Contact",ja:"連絡先"},
 
-    hero_eyebrow:{en:"Career Ledger — Entry No. 001",ja:"キャリア台帳 ― 記録 No. 001"},
+    hero_eyebrow:{en:"Portfolio",ja:"ポートフォリオ"},
     hero_role:{en:"Computer Science Graduate — IT Support &amp; Software Engineering",ja:"コンピューターサイエンス修士修了 ― ITサポート & ソフトウェアエンジニアリング"},
-    hero_sub:{en:"Six years of keeping business accounts precise now paired with a Master's in software engineering and cybersecurity — I bring the same discipline to systems that I once brought to ledgers.",ja:"6年間、正確さを追求してきた経理・会計の実務経験に、ソフトウェア工学とサイバーセキュリティの修士課程で得た専門性を掛け合わせました。帳簿に向き合ってきたのと同じ緻密さを、いまはシステムに向けています。"},
-
-    meta_location_label:{en:"Location",ja:"所在地"},
-    meta_status_label:{en:"Status",ja:"ステータス"},
-    meta_status_val:{en:"Open to work — IT Support / Software Engineering",ja:"求職中 ― ITサポート / ソフトウェアエンジニア"},
-    meta_contact_label:{en:"Contact",ja:"連絡先"},
+    hero_sub:{en:"Six years in accounting and consulting, now paired with a Master's in software engineering and cybersecurity — the same care for accuracy, applied to systems.",ja:"6年間の経理・コンサルティング実務に、ソフトウェア工学とサイバーセキュリティの修士で得た専門性を掛け合わせました。正確さへのこだわりを、いまはシステムづくりに向けています。"},
 
     hero_cta_projects:{en:"View Works",ja:"制作物を見る"},
     hero_cta_contact:{en:"Get in Touch",ja:"連絡する"},
 
-    profile_eyebrow:{en:"Opening Balance",ja:"期首残高"},
     profile_heading:{en:"Profile",ja:"プロフィール"},
     profile_body:{en:"Master of Computer Science graduate (University of Wollongong) combining a strong background in software engineering and cybersecurity with six years of corporate account management and business consulting experience. Track record managing 1,000+ client accounts, optimising internal operations, and standardising workflows across cross-border environments — skilled at gathering complex requirements, protecting data integrity, and guiding stakeholders through new systems.",
       ja:"ウロンゴン大学にてコンピューターサイエンス修士(ソフトウェア工学・サイバーセキュリティ専攻)を修了。6年間の法人アカウントマネジメント・ビジネスコンサルティング経験と技術的な専門性を兼ね備える。1,000件超のクライアントアカウント管理、社内業務の最適化、国境を越えた環境でのワークフロー標準化などの実績を持つ。複雑な要件のヒアリング、データの正確性の担保、新システム導入時のステークホルダー調整を得意とする。"},
 
-    skills_eyebrow:{en:"Chart of Accounts",ja:"勘定科目一覧"},
     skills_heading:{en:"Skills",ja:"スキル"},
     skills_cat1:{en:"Programming",ja:"プログラミング"},
     skills_cat2:{en:"AI / ML",ja:"AI / 機械学習"},
@@ -739,9 +864,7 @@
     skill_jp:{en:"Japanese — Native",ja:"日本語 ― ネイティブ"},
     skill_en:{en:"English — Professional",ja:"英語 ― ビジネスレベル"},
 
-    experience_eyebrow:{en:"Transaction History",ja:"取引履歴"},
-    experience_heading:{en:"Professional Experience",ja:"職務経歴"},
-
+    experience_heading:{en:"Experience",ja:"職歴"},
     exp1_dates:{en:"2024 — Present",ja:"2024年 ― 現在"},
     exp1_title:{en:"Remote Accounting Staff",ja:"リモート経理スタッフ"},
     exp1_company:{en:"Aoi Tax &amp; Consulting Group · Part-time",ja:"Aoi Tax &amp; Consulting Group ・ パートタイム"},
@@ -756,62 +879,178 @@
     exp2_b3:{en:"Managed contracts and consultations across a 1,000+ account portfolio, including ASX-listed companies.",ja:"ASX上場企業を含む1,000件超のアカウントポートフォリオにおいて、契約管理・コンサルティング対応を担当。"},
     exp2_b4:{en:"Coordinated with cross-border teams in Japan and Vietnam on technical documentation and training for 30+ colleagues, in English and Japanese.",ja:"日本とベトナムの部門横断チームと連携し、30名超の同僚に対して英語・日本語で技術文書の整備と研修を実施。"},
 
-    projects_eyebrow:{en:"Audit Trail",ja:"監査証跡"},
-    projects_heading:{en:"Works",ja:"制作物"},
-    projects_intro:{en:"A selection of apps and systems I've built — from expense tracking to AI navigation and secure file sharing. More entries as new work ships.",
-      ja:"これまでに手がけたアプリやシステムのなかから、支出管理・AIナビ・セキュア共有など成果物をご紹介します。新しい作品ができたら、随時ここに追加していきます。"},
-    stack_label:{en:"Tech stack",ja:"使用技術"},
-    link_demo:{en:"Demo (coming soon)",ja:"デモ（準備中）"},
+    projects_heading:{en:"Works",ja:"Works"},
+    projects_intro:{en:"A selection of apps and systems I've built. Click a thumbnail to see the details.",
+      ja:"腕によりをかけて制作した、愛すべき成果物たちをご紹介します。"},
+    stack_label:{en:"Tech stack",ja:"使用言語など"},
+    link_demo:{en:"Demo (coming soon)",ja:"Demo（準備中）"},
     link_github:{en:"GitHub (coming soon)",ja:"GitHub（準備中）"},
     link_github_live:{en:"GitHub",ja:"GitHub"},
-    shot_placeholder:{en:"+ Add<br>screenshot",ja:"+ 画像を<br>追加"},
+    link_demo_live:{en:"Demo",ja:"Demo"},
+    shot_placeholder:{en:"Screenshot coming soon",ja:"画像準備中"},
+    modal_close:{en:"Close",ja:"閉じる"},
 
-    proj_ef_short:{en:"ExpenseFlow",ja:"ExpenseFlow"},
-    proj_ef_wi_meta:{en:"React · Spring Boot · Neon",ja:"React ・ Spring Boot ・ Neon"},
-    proj_ef_stamp:{en:"Live",ja:"公開中"},
-    proj_ef_dates:{en:"2026 — Present",ja:"2026年 ― 現在"},
-    proj_ef_title:{en:"ExpenseFlow — Smart Expense &amp; Receipt Management",ja:"ExpenseFlow ― スマート支出・レシート管理"},
-    proj_ef_role:{en:"Personal project · Full-stack (deployed)",ja:"個人開発 ・ フルスタック（デプロイ済み）"},
-    proj_ef_demo:{en:"Live demo",ja:"ライブデモ"},
-    proj_ef_desc:{en:"Expense tracker that treats Personal vs Work-related as a first-class field, with Purpose notes for work spend, receipt uploads, filters, and dashboard charts. Full stack: React + TypeScript + Material UI frontend, Spring Boot API with JWT auth, and Neon PostgreSQL — deployed on Vercel and Render (free tier).",
-      ja:"Personal / Work-related を第一級の分類として扱う支出管理アプリ。Work支出には Purpose（用途）を記録し、レシート画像のアップロード、フィルター、ダッシュボードのグラフ表示に対応。フロントは React + TypeScript + Material UI、API は Spring Boot + JWT、DB は Neon（PostgreSQL）。Vercel と Render の無料枠で公開中。"},
-
-    proj1_short:{en:"AI Mobile Navigation",ja:"AIモバイルナビ"},
-    proj1_wi_meta:{en:"YOLOv12 · Capstone",ja:"YOLOv12 ・ 卒業研究"},
-    proj1_stamp:{en:"In<br>Progress",ja:"進行中"},
-    proj1_dates:{en:"Jul 2025 — Jun 2026",ja:"2025年7月 ― 2026年6月"},
-    proj1_title:{en:"AI-Assisted Mobile Navigation for the Visually Impaired",ja:"視覚障がい者向けAI支援モバイルナビゲーション"},
-    proj1_role:{en:"Capstone Project, University of Wollongong · AI Developer &amp; Team Lead (rotating)",ja:"ウロンゴン大学 卒業研究プロジェクト ・ AI開発担当 & チームリーダー(持ち回り)"},
-    proj1_desc:{en:"Leading a cross-functional team building a real-time object detection mobile app on YOLOv12 — managing dataset classification, model training pipelines, and delivery milestones through Agile methodology. Translating complex user needs into working technical solutions.",
-      ja:"YOLOv12を用いたリアルタイム物体検出モバイルアプリの開発を、部門横断チームを率いて推進。データセットの分類、モデル学習パイプラインの構築、アジャイル手法によるマイルストーン管理を担当し、複雑なユーザーニーズを実装可能な技術要件へ落とし込んでいる。"},
-
-    proj2_short:{en:"Secure File Sharing",ja:"セキュアファイル共有"},
-    proj2_wi_meta:{en:"AES · ECDSA · Blockchain",ja:"AES ・ ECDSA ・ ブロックチェーン"},
-    proj2_stamp:{en:"Verified<br>29 / 30",ja:"検証済<br>29 / 30"},
-    proj2_dates:{en:"Sep 2025 — Nov 2025",ja:"2025年9月 ― 2025年11月"},
-    proj2_title:{en:"Blockchain-Based Secure File Sharing System",ja:"ブロックチェーン型セキュアファイル共有システム"},
-    proj2_role:{en:"Backend Developer, University of Wollongong",ja:"ウロンゴン大学 ・ バックエンド開発担当"},
-    proj2_desc:{en:"Implemented AES symmetric encryption and ECDSA digital signatures for end-to-end data security, with a blockchain ledger for tamper-resistant access logging. Scored 29/30 for technical implementation and security architecture.",
-      ja:"AES共通鍵暗号とECDSAデジタル署名によるエンドツーエンドのデータ保護を実装し、改ざん耐性のあるアクセスログ記録にブロックチェーン台帳を活用。技術実装およびセキュリティ設計の評価で29/30を獲得。"},
-
-    education_eyebrow:{en:"Closing Balance",ja:"期末残高"},
     education_heading:{en:"Education",ja:"学歴"},
     edu_degree:{en:"Master of Computer Science",ja:"コンピューターサイエンス修士"},
     edu_school:{en:"Software Engineering &amp; Cybersecurity · University of Wollongong",ja:"ソフトウェア工学・サイバーセキュリティ専攻 ・ ウロンゴン大学"},
     edu_date:{en:"Graduated July 2026",ja:"2026年7月 卒業"},
 
-    contact_eyebrow:{en:"Reconciliation",ja:"照合"},
     contact_heading:{en:"Let's Talk",ja:"お問い合わせ"},
-    contact_body:{en:"Currently balancing the books on my next role. If you're looking for someone who can bridge day-to-day operations with hands-on engineering, I'd welcome the conversation.",
-      ja:"現在、次のキャリアに向けて準備を進めています。日々の業務運営と実践的なエンジニアリングの両方に橋渡しできる人材をお探しでしたら、ぜひお話しさせてください。"},
+    contact_body:{en:"Open to IT Support and Software Engineering roles. If you're looking for someone who bridges operations and hands-on engineering, I'd love to chat.",
+      ja:"ITサポート・ソフトウェアエンジニア職を探しています。業務運営と実践的なエンジニアリングの橋渡しができる人材をお探しでしたら、ぜひお話しさせてください。"},
     contact_email_label:{en:"Email",ja:"メール"},
     contact_phone_label:{en:"Phone",ja:"電話"},
     contact_location_label:{en:"Location",ja:"所在地"},
 
-    footer_left:{en:"Ledger closed — balance carried forward.",ja:"本日の記帳完了 ― 次のエントリへ。"}
+    footer_left:{en:"Thanks for visiting.",ja:"ご覧いただきありがとうございました。"}
   };
 
+  const works = [
+    {
+      id: "expenseflow",
+      short: { en: "ExpenseFlow", ja: "ExpenseFlow" },
+      title: {
+        en: "ExpenseFlow",
+        ja: "ExpenseFlow"
+      },
+      role: {
+        en: "Personal project · Full-stack (deployed)",
+        ja: "個人開発 ・ フルスタック（デプロイ済み）"
+      },
+      desc: {
+        en: "Expense tracker that treats Personal vs Work-related as a first-class field, with Purpose notes for work spend, receipt uploads, filters, and dashboard charts. Built with React + TypeScript + Material UI, a Spring Boot API with JWT auth, and Neon PostgreSQL — deployed on Vercel and Render.",
+        ja: "Personal / Work-related を第一級の分類として扱う支出管理アプリ。Work支出には Purpose（用途）を記録し、レシート画像のアップロード、フィルター、ダッシュボードのグラフ表示に対応。フロントは React + TypeScript + Material UI、API は Spring Boot + JWT、DB は Neon（PostgreSQL）。Vercel と Render で公開中。"
+      },
+      stack: ["React", "TypeScript", "Vite", "Material UI", "Chart.js", "Spring Boot", "JWT", "PostgreSQL / Neon", "Vercel", "Render"],
+      demo: { href: "https://taxmate-au-ten.vercel.app", live: true },
+      github: { href: "https://github.com/mayuko1029/taxmate-au", live: true },
+      images: [
+        { src: "assets/expenseflow-dashboard.png", alt: "ExpenseFlow dashboard" },
+        { src: "assets/expenseflow-login.png", alt: "ExpenseFlow login" }
+      ]
+    },
+    {
+      id: "ai-nav",
+      short: { en: "AI Mobile Navigation", ja: "AIモバイルナビ" },
+      title: {
+        en: "AI Mobile Navigation",
+        ja: "AIモバイルナビ"
+      },
+      role: {
+        en: "Capstone · University of Wollongong · AI Developer & Team Lead",
+        ja: "ウロンゴン大学 卒業研究 ・ AI開発 & チームリーダー"
+      },
+      desc: {
+        en: "Leading a cross-functional team building a real-time object detection mobile app on YOLOv12 — managing dataset classification, model training pipelines, and delivery milestones through Agile methodology.",
+        ja: "YOLOv12を用いたリアルタイム物体検出モバイルアプリの開発を、部門横断チームを率いて推進。データセットの分類、モデル学習パイプラインの構築、アジャイル手法によるマイルストーン管理を担当。"
+      },
+      stack: ["Python", "YOLOv12", "Computer Vision", "Agile"],
+      demo: { href: "#", live: false },
+      github: { href: "#", live: false },
+      images: []
+    },
+    {
+      id: "secure-share",
+      short: { en: "Secure File Sharing", ja: "セキュアファイル共有" },
+      title: {
+        en: "Secure File Sharing",
+        ja: "セキュアファイル共有"
+      },
+      role: {
+        en: "Backend Developer · University of Wollongong",
+        ja: "ウロンゴン大学 ・ バックエンド開発"
+      },
+      desc: {
+        en: "Implemented AES symmetric encryption and ECDSA digital signatures for end-to-end data security, with a blockchain ledger for tamper-resistant access logging. Scored 29/30 for technical implementation and security architecture.",
+        ja: "AES共通鍵暗号とECDSAデジタル署名によるエンドツーエンドのデータ保護を実装し、改ざん耐性のあるアクセスログ記録にブロックチェーン台帳を活用。技術実装およびセキュリティ設計の評価で29/30を獲得。"
+      },
+      stack: ["AES", "ECDSA", "Blockchain", "Python"],
+      demo: { href: "#", live: false },
+      github: { href: "#", live: false },
+      images: []
+    }
+  ];
+
   let currentLang = 'en';
+  let openWorkId = null;
+
+  const modal = document.getElementById('work-modal');
+  const worksGrid = document.getElementById('works-grid');
+
+  function t(key){
+    return translations[key] ? translations[key][currentLang] : key;
+  }
+
+  function renderWorksGrid(){
+    worksGrid.innerHTML = works.map(w => {
+      const thumb = w.images[0]
+        ? `<img src="${w.images[0].src}" alt="" loading="lazy">`
+        : `<span class="thumb-fallback">${t('shot_placeholder')}</span>`;
+      return `
+        <button type="button" class="work-card" role="listitem" data-work-id="${w.id}" aria-haspopup="dialog">
+          <div class="work-card-thumb">${thumb}</div>
+          <div class="work-card-title">${w.short[currentLang]}</div>
+        </button>`;
+    }).join('');
+  }
+
+  function setMainImage(work, index){
+    const main = document.getElementById('work-modal-main');
+    const thumbs = document.getElementById('work-modal-thumbs');
+    if(!work.images.length){
+      main.innerHTML = `<div class="no-shot">${t('shot_placeholder')}</div>`;
+      thumbs.innerHTML = '';
+      return;
+    }
+    const img = work.images[index];
+    main.innerHTML = `<img src="${img.src}" alt="${img.alt}">`;
+    thumbs.querySelectorAll('button').forEach((btn, i) => {
+      btn.classList.toggle('active', i === index);
+    });
+  }
+
+  function openWorkModal(id){
+    const work = works.find(w => w.id === id);
+    if(!work) return;
+    openWorkId = id;
+
+    document.getElementById('work-modal-title').textContent = work.title[currentLang];
+    document.getElementById('work-modal-role').textContent = work.role[currentLang];
+    document.getElementById('work-modal-desc').textContent = work.desc[currentLang];
+    document.getElementById('work-modal-stack-label').textContent = t('stack_label');
+    document.getElementById('work-modal-stack').innerHTML =
+      work.stack.map(s => `<li>${s}</li>`).join('');
+
+    const links = document.getElementById('work-modal-links');
+    const demoLabel = work.demo.live ? t('link_demo_live') : t('link_demo');
+    const ghLabel = work.github.live ? t('link_github_live') : t('link_github');
+    links.innerHTML = `
+      <a class="link-btn${work.demo.live ? '' : ' disabled'}" href="${work.demo.href}" ${work.demo.live ? 'target="_blank" rel="noopener noreferrer"' : ''}>${iconDemo}${demoLabel}</a>
+      <a class="link-btn${work.github.live ? '' : ' disabled'}" href="${work.github.href}" ${work.github.live ? 'target="_blank" rel="noopener noreferrer"' : ''}>${iconGithub}${ghLabel}</a>
+    `;
+
+    const thumbs = document.getElementById('work-modal-thumbs');
+    thumbs.innerHTML = work.images.map((img, i) => `
+      <button type="button" data-img-index="${i}" class="${i === 0 ? 'active' : ''}" aria-label="Preview ${i + 1}">
+        <img src="${img.src}" alt="">
+      </button>
+    `).join('');
+    setMainImage(work, 0);
+
+    modal.hidden = false;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    modal.querySelector('.work-modal-close').setAttribute('aria-label', t('modal_close'));
+    modal.querySelector('.work-modal-close').focus();
+  }
+
+  function closeWorkModal(){
+    modal.classList.remove('open');
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    openWorkId = null;
+  }
+
   function setLang(lang){
     currentLang = lang;
     document.documentElement.lang = lang;
@@ -822,9 +1061,30 @@
     document.querySelectorAll('.lang-btn').forEach(b=>{
       b.classList.toggle('active', b.dataset.lang===lang);
     });
+    renderWorksGrid();
+    if(openWorkId) openWorkModal(openWorkId);
   }
 
-  // scroll reveal
+  worksGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('[data-work-id]');
+    if(card) openWorkModal(card.dataset.workId);
+  });
+
+  modal.addEventListener('click', (e) => {
+    if(e.target.matches('[data-close-modal]')) closeWorkModal();
+    const thumb = e.target.closest('[data-img-index]');
+    if(thumb && openWorkId){
+      const work = works.find(w => w.id === openWorkId);
+      setMainImage(work, Number(thumb.dataset.imgIndex));
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && openWorkId) closeWorkModal();
+  });
+
+  renderWorksGrid();
+
   const observer = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
