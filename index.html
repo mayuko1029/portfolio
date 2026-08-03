@@ -6,7 +6,7 @@
 <title>Mayuko Kamazuka — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #e9ecef;
@@ -99,6 +99,7 @@
 
   /* ---------- Sections ---------- */
   section{ padding:72px 0; }
+  #profile{ scroll-margin-top:72px; }
   .section-head{ text-align:center; margin-bottom:40px; }
   .section-head h2{
     margin:0 0 12px;
@@ -116,6 +117,142 @@
 
   .reveal{ opacity:0; transform:translateY(16px); transition:opacity .65s ease, transform .65s ease; }
   .reveal.visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- Cover (Japan → Australia) ---------- */
+  .cover{
+    position:relative;
+    min-height:100vh;
+    overflow:hidden;
+    background:#e7eef0;
+    margin:0;
+    padding:0;
+  }
+  .cover-split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    min-height:100vh;
+  }
+  .cover-shore{
+    position:relative;
+    min-height:100vh;
+    background:#e7eef0;
+    overflow:hidden;
+  }
+  .cover-art{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    width:100%;
+    height:18vh;
+    margin:0;
+    padding:0;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    pointer-events:none;
+    background:#e7eef0;
+    overflow:hidden;
+  }
+  .cover-art img{
+    max-width:100%;
+    max-height:100%;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    object-position:center bottom;
+    display:block;
+  }
+  .cover-seam{
+    position:absolute;
+    top:0; bottom:0; left:50%;
+    width:1px;
+    transform:translateX(-50%);
+    background:rgba(58,67,72,0.1);
+    z-index:2;
+    pointer-events:none;
+  }
+  .cover-bridge{
+    position:absolute;
+    left:50%; top:42%;
+    transform:translate(-50%,-50%);
+    z-index:5;
+    width:min(90vw, 560px);
+    text-align:center;
+    pointer-events:none;
+  }
+  .cover-title{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:800;
+    font-size:clamp(36px, 7vw, 68px);
+    line-height:1.08;
+    letter-spacing:-0.02em;
+    margin:0;
+    color:var(--ink);
+  }
+  .cover-enter-wrap{
+    pointer-events:auto;
+    margin-top:22px;
+  }
+  .cover-enter{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:13px; font-weight:600; letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    text-decoration:none;
+    border-bottom:1px solid currentColor;
+    padding-bottom:4px;
+  }
+  .cover-enter:hover{ color:var(--ink); }
+  .cover-enter::after{
+    content:"";
+    width:26px; height:1px;
+    background:currentColor;
+  }
+  .cover-flight{
+    position:absolute;
+    left:4%; right:4%;
+    top:28%;
+    height:1px;
+    z-index:4;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+      90deg,
+      rgba(58,67,72,0.28) 0 6px,
+      transparent 6px 16px
+    );
+    opacity:0.4;
+    mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  .cover-plane{
+    position:absolute;
+    left:0; top:28%;
+    z-index:6;
+    width:52px; height:28px;
+    margin-top:-14px;
+    animation:coverFly 11s linear infinite;
+    opacity:0.75;
+    pointer-events:none;
+  }
+  .cover-plane svg{ width:100%; height:100%; display:block; }
+  @keyframes coverFly{
+    0%{ left:-8%; transform:translateY(6px); opacity:0; }
+    8%{ opacity:0.75; }
+    50%{ transform:translateY(-4px); }
+    92%{ opacity:0.75; }
+    100%{ left:106%; transform:translateY(4px); opacity:0; }
+  }
+
+  @media (max-width:720px){
+    .cover-split{ grid-template-columns:1fr; }
+    .cover-shore{ min-height:50vh; }
+    .cover-art{ height:15vh; }
+    .cover-seam{
+      top:50%; left:0; right:0; width:auto; height:1px;
+      transform:none;
+    }
+    .cover-bridge{ top:46%; width:88vw; }
+    .cover-title{ font-size:clamp(32px, 9vw, 48px); }
+    .cover-flight, .cover-plane{ top:30%; }
+  }
 
   /* ---------- Hero ---------- */
   .hero{
@@ -647,6 +784,7 @@
     .reveal, .hero-kicker, .hero h1, .hero-role, .hero-sub, .hero-ctas{
       opacity:1; transform:none;
     }
+    .cover-plane{ animation:none; left:48%; opacity:0.75; transform:translateX(-50%); }
   }
 </style>
 </head>
@@ -654,7 +792,7 @@
 
 <header>
   <div class="nav-inner">
-    <a class="brand" href="#top">Mayuko Kamazuka</a>
+    <a class="brand" href="#">Mayuko Kamazuka</a>
     <nav class="links">
       <a href="#profile" data-i18n="nav_profile">Profile</a>
       <a href="#works" data-i18n="nav_works">Works</a>
@@ -665,23 +803,44 @@
     </nav>
     <div class="lang-toggle">
       <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" data-lang="ja" onclick="setLang('ja')">日本語</button>
+      <button class="lang-btn" data-lang="ja" onclick="setLang('ja')">JP</button>
     </div>
   </div>
 </header>
 
-<main class="wrap" id="top">
-
-  <section class="hero">
-    <div class="hero-kicker" data-i18n="hero_eyebrow">Portfolio</div>
-    <h1>Mayuko Kamazuka</h1>
-    <div class="hero-role" data-i18n="hero_role">Computer Science Graduate — IT Support &amp; Software Engineering</div>
-    <p class="hero-sub" data-i18n="hero_sub">Six years in accounting and consulting, now paired with a Master's in software engineering and cybersecurity — the same care for accuracy, applied to systems.</p>
-    <div class="hero-ctas">
-      <a class="btn btn-primary" href="#works" data-i18n="hero_cta_projects">View Works</a>
-      <a class="btn btn-ghost" href="#contact" data-i18n="hero_cta_contact">Get in Touch</a>
+<section class="cover" aria-label="Cover">
+  <div class="cover-split">
+    <div class="cover-shore">
+      <div class="cover-art">
+        <img src="assets/cover-jp-soft.png" width="1536" height="638" alt="">
+      </div>
     </div>
-  </section>
+    <div class="cover-shore">
+      <div class="cover-art">
+        <img src="assets/cover-au-soft.png" width="1503" height="455" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="cover-seam" aria-hidden="true"></div>
+  <div class="cover-flight" aria-hidden="true"></div>
+  <div class="cover-plane" aria-hidden="true">
+    <svg viewBox="0 0 96 48" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#3a3f46">
+        <path d="M8 26 L22 22 L70 20 C78 19.5 86 21 92 24 C86 26.5 78 27.5 70 27.5 L40 28 L28 38 L24 38 L32 28 L18 29 Z"/>
+        <path d="M34 21 L26 10 L31 10 L42 20 Z"/>
+        <path d="M12 22 L4 16 L8 16 L16 22 Z"/>
+      </g>
+    </svg>
+  </div>
+  <div class="cover-bridge">
+    <h1 class="cover-title">Mayuko Kamazuka</h1>
+    <div class="cover-enter-wrap">
+      <a class="cover-enter" href="#profile" data-i18n="cover_enter">Enter portfolio</a>
+    </div>
+  </div>
+</section>
+
+<main class="wrap" id="top">
 
   <section id="profile" class="reveal">
     <div class="section-head">
@@ -838,6 +997,7 @@
     nav_education:{en:"Education",ja:"学歴"},
     nav_contact:{en:"Contact",ja:"連絡先"},
 
+    cover_enter:{en:"Enter portfolio",ja:"ポートフォリオを見る"},
     hero_eyebrow:{en:"Portfolio",ja:"ポートフォリオ"},
     hero_role:{en:"Computer Science Graduate — IT Support &amp; Software Engineering",ja:"コンピューターサイエンス修士修了 ― ITサポート & ソフトウェアエンジニアリング"},
     hero_sub:{en:"Six years in accounting and consulting, now paired with a Master's in software engineering and cybersecurity — the same care for accuracy, applied to systems.",ja:"6年間の経理・コンサルティング実務に、ソフトウェア工学とサイバーセキュリティの修士で得た専門性を掛け合わせました。正確さへのこだわりを、いまはシステムづくりに向けています。"},
