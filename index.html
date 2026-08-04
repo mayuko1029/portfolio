@@ -11,6 +11,11 @@
   :root{
     --bg: #e7eef0;
     --bg-soft: #dfe8ea;
+    --solid-jp: #e7eef0;
+    --solid-au: #c9d6da;
+    --ichi-a: #e7eef0;
+    --ichi-b: #dde6e9;
+    --ichi-size: 28px;
     --surface: #ffffff;
     --ink: #3a4348;
     --ink-soft: #6a757c;
@@ -53,11 +58,21 @@
     border-top:1px solid rgba(58,67,72,0.06);
   }
   main.wrap > section:first-of-type{ border-top:none; }
-  main.wrap > section:nth-of-type(odd){
-    background:#eef3f4;
+
+  /* セクション帯：表紙=無地 → Profile=市松 → Works=無地 … */
+  .band-solid{
+    background:var(--solid-jp);
   }
-  main.wrap > section:nth-of-type(even){
-    background:var(--bg);
+  .band-ichimatsu{
+    background:
+      repeating-conic-gradient(
+        from 90deg,
+        var(--ichi-a) 0% 25%,
+        var(--ichi-b) 0% 50%
+      ) 0 0 / var(--ichi-size) var(--ichi-size);
+  }
+  @media (max-width:720px){
+    .band-ichimatsu{ background-size:24px 24px; }
   }
 
   /* ---------- Nav ---------- */
@@ -165,8 +180,14 @@
   .cover-shore{
     position:relative;
     min-height:100vh;
-    background:var(--bg);
+    background:var(--solid-jp);
     overflow:hidden;
+  }
+  .cover-shore-jp{
+    background:var(--solid-jp);
+  }
+  .cover-shore-au{
+    background:var(--solid-au);
   }
   .cover-art{
     position:absolute;
@@ -179,7 +200,7 @@
     align-items:flex-end;
     justify-content:center;
     pointer-events:none;
-    background:var(--bg);
+    background:inherit;
     overflow:hidden;
   }
   .cover-art img{
@@ -829,7 +850,6 @@
     width:100%;
     margin:0;
     padding:36px max(28px, calc((100% - var(--max)) / 2)) 56px;
-    background:#eef3f4;
     border-top:1px solid var(--rule);
     box-sizing:border-box;
   }
@@ -892,12 +912,12 @@
 
 <section class="cover" aria-label="Cover">
   <div class="cover-split">
-    <div class="cover-shore">
+    <div class="cover-shore cover-shore-jp">
       <div class="cover-art">
         <img src="assets/cover-jp-soft.png" width="1536" height="638" alt="">
       </div>
     </div>
-    <div class="cover-shore">
+    <div class="cover-shore cover-shore-au">
       <div class="cover-art">
         <img src="assets/cover-au-soft.png" width="1503" height="455" alt="">
       </div>
@@ -924,7 +944,7 @@
 
 <main class="wrap" id="top">
 
-  <section id="profile" class="reveal">
+  <section id="profile" class="reveal band-ichimatsu">
     <div class="section-head">
       <h2 data-i18n="profile_heading">Profile</h2>
     </div>
@@ -936,7 +956,7 @@
     </div>
   </section>
 
-  <section id="works" class="reveal">
+  <section id="works" class="reveal band-solid">
     <div class="section-head">
       <h2 data-i18n="projects_heading">Works</h2>
       <p data-i18n="projects_intro">A selection of apps and systems I've built. Click a thumbnail to see the details.</p>
@@ -944,7 +964,7 @@
     <div class="works-grid" id="works-grid" role="list"></div>
   </section>
 
-  <section id="skills" class="reveal">
+  <section id="skills" class="reveal band-ichimatsu">
     <div class="section-head">
       <h2 data-i18n="skills_heading">Skills</h2>
     </div>
@@ -972,7 +992,7 @@
     </div>
   </section>
 
-  <section id="experience" class="reveal">
+  <section id="experience" class="reveal band-solid">
     <div class="section-head">
       <h2 data-i18n="experience_heading">Experience</h2>
     </div>
@@ -1004,7 +1024,7 @@
     </div>
   </section>
 
-  <section id="education" class="reveal">
+  <section id="education" class="reveal band-ichimatsu">
     <div class="section-head">
       <h2 data-i18n="education_heading">Education</h2>
     </div>
@@ -1017,7 +1037,7 @@
     </div>
   </section>
 
-  <section id="contact" class="reveal">
+  <section id="contact" class="reveal band-solid">
     <div class="section-head">
       <h2 data-i18n="contact_heading">Let's Talk</h2>
       <p data-i18n="contact_body">Open to IT Support and Software Engineering roles. If you're looking for someone who bridges operations and hands-on engineering, I'd love to chat.</p>
@@ -1040,7 +1060,7 @@
 
 </main>
 
-<footer class="wrap">
+<footer class="wrap band-ichimatsu">
   <span data-i18n="footer_left">Thanks for visiting.</span>
   <span>&copy; 2026 Mayuko Kamazuka</span>
 </footer>
