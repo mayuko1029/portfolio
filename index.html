@@ -585,12 +585,11 @@
   .ruled-title h3{
     margin:0;
     font-family:var(--font-display);
-    font-size:clamp(20px,2.4vw,26px);
+    font-size:clamp(22px,2.6vw,28px);
     font-weight:700;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    max-width:70%;
+    text-align:center;
+    line-height:1.2;
+    max-width:85%;
   }
   .work-modal-role{
     font-size:13px;
@@ -664,8 +663,8 @@
     flex-wrap:wrap;
   }
   .work-modal-thumbs button{
-    width:68px;
-    height:46px;
+    width:72px;
+    height:52px;
     padding:0;
     border:2px solid transparent;
     border-radius:4px;
@@ -673,28 +672,31 @@
     cursor:pointer;
     background:#fff;
     box-shadow:0 1px 4px rgba(0,0,0,0.08);
+    flex:0 0 auto;
   }
   .work-modal-thumbs button.active{
     border-color:var(--ink);
   }
   .work-modal-thumbs img{
-    width:100%; height:100%; object-fit:cover; display:block;
+    width:100%; height:100%; object-fit:cover; object-position:top center; display:block;
   }
   .work-modal-main{
     border-radius:6px;
     overflow:hidden;
     background:#fff;
-    min-height:240px;
+    aspect-ratio: 3 / 4;
+    max-height:min(520px, 58vh);
+    width:100%;
     display:flex;
-    align-items:center;
+    align-items:stretch;
     justify-content:center;
     box-shadow:0 4px 16px rgba(50,60,70,0.08);
   }
   .work-modal-main img{
     width:100%;
-    height:auto;
-    max-height:440px;
-    object-fit:contain;
+    height:100%;
+    object-fit:cover;
+    object-position:top center;
     display:block;
   }
   .work-modal-main .no-shot{
@@ -702,6 +704,7 @@
     color:var(--ink-faint);
     padding:32px;
     text-align:center;
+    margin:auto;
   }
   body.modal-open{ overflow:hidden; }
 
@@ -1215,16 +1218,16 @@
       id: "secure-share",
       short: { en: "TrustShare", ja: "TrustShare" },
       title: {
-        en: "TrustShare — Blockchain-Based Secure File Sharing",
-        ja: "TrustShare ― ブロックチェーン型セキュアファイル共有"
+        en: "TrustShare",
+        ja: "TrustShare"
       },
       role: {
         en: "University of Wollongong · Backend & Security · Portfolio UI enhancements",
         ja: "ウロンゴン大学 ・ Backend / セキュリティ担当 ・ ポートフォリオ向けUI改修"
       },
       desc: {
-        en: "Extended my university group project (Backend & security, 29/30) with a portfolio-ready UI: tabbed secure-file workflow, drag-and-drop upload, encrypt/sign/store/log pipeline visibility, verification badges, and Etherscan links. Also improved mock mode so the full access/verify demo runs locally without the blockchain stack.",
-        ja: "大学のグループプロジェクト（Backend / セキュリティ担当、29/30）をベースに、就職用ポートフォリオ向けに UI を再構成。縦並びの API 画面を Upload → Access → Verify のフロー型タブにし、ドラッグ&ドロップ、暗号化パイプラインの可視化、検証バッジ、Etherscan リンクを追加。ローカル Mock でも一連のデモが通るよう Backend 側も調整。"
+        en: "Blockchain-based secure file sharing, extended from my university group project (Backend & security, 29/30) with a portfolio-ready UI: tabbed secure-file workflow, drag-and-drop upload, encrypt/sign/store/log pipeline visibility, verification badges, and Etherscan links. Also improved mock mode so the full access/verify demo runs locally without the blockchain stack.",
+        ja: "ブロックチェーン型セキュアファイル共有。大学のグループプロジェクト（Backend / セキュリティ担当、29/30）をベースに、就職用ポートフォリオ向けに UI を再構成。縦並びの API 画面を Upload → Access → Verify のフロー型タブにし、ドラッグ&ドロップ、暗号化パイプラインの可視化、検証バッジ、Etherscan リンクを追加。ローカル Mock でも一連のデモが通るよう Backend 側も調整。"
       },
       stack: ["AES-256-GCM", "ECDSA", "FastAPI", "Next.js", "Solidity", "Sepolia"],
       demo: { href: "https://drive.google.com/file/d/13FAQ_zMUDUjaOqvAQyH8PUDQVsZweILP/view?usp=sharing", live: true },
