@@ -696,21 +696,29 @@
   .work-modal-main{
     border-radius:6px;
     overflow:hidden;
-    background:#fff;
-    aspect-ratio: 3 / 4;
+    background:var(--bg-soft);
+    aspect-ratio: 4 / 3;
     max-height:min(520px, 58vh);
     width:100%;
     display:flex;
-    align-items:stretch;
+    align-items:center;
     justify-content:center;
     box-shadow:0 4px 16px rgba(50,60,70,0.08);
+  }
+  .work-modal-main.is-portrait{
+    aspect-ratio: 3 / 4;
+    background:#fff;
   }
   .work-modal-main img{
     width:100%;
     height:100%;
+    object-fit:contain;
+    object-position:center;
+    display:block;
+  }
+  .work-modal-main.is-portrait img{
     object-fit:cover;
     object-position:top center;
-    display:block;
   }
   .work-modal-main .no-shot{
     font-size:13px;
@@ -1298,8 +1306,8 @@
       demo: { href: "https://taxmate-au-ten.vercel.app", live: true },
       github: { href: "https://github.com/mayuko1029/taxmate-au", live: true },
       images: [
-        { src: "assets/expenseflow-dashboard.png", alt: "ExpenseFlow dashboard" },
-        { src: "assets/expenseflow-login.png", alt: "ExpenseFlow login" }
+        { src: "assets/expenseflow-dashboard.png", alt: "ExpenseFlow dashboard", fit: "portrait" },
+        { src: "assets/expenseflow-login.png", alt: "ExpenseFlow login", fit: "portrait" }
       ]
     },
     {
@@ -1321,8 +1329,8 @@
       demo: { href: "https://taxmate-au-ten.vercel.app", live: true },
       github: { href: "https://github.com/mayuko1029/taxmate-au", live: true },
       images: [
-        { src: "assets/expenseflow-architecture.png", alt: "ExpenseFlow cloud architecture diagram" },
-        { src: "assets/expenseflow-uptime.png", alt: "ExpenseFlow UptimeRobot monitoring dashboard" }
+        { src: "assets/expenseflow-architecture.png", alt: "ExpenseFlow cloud architecture diagram", fit: "contain" },
+        { src: "assets/expenseflow-uptime.png", alt: "ExpenseFlow UptimeRobot monitoring dashboard", fit: "contain" }
       ]
     },
     {
@@ -1364,10 +1372,10 @@
       demo: { href: "https://drive.google.com/file/d/13FAQ_zMUDUjaOqvAQyH8PUDQVsZweILP/view?usp=sharing", live: true },
       github: { href: "https://github.com/mayuko1029/Blockchain-SecureFileSharingSystem", live: true },
       images: [
-        { src: "assets/trustshare-upload.png", alt: "TrustShare upload" },
-        { src: "assets/trustshare-pipeline.png", alt: "TrustShare security pipeline" },
-        { src: "assets/trustshare-access.png", alt: "TrustShare access request" },
-        { src: "assets/trustshare-verify.png", alt: "TrustShare verify" }
+        { src: "assets/trustshare-upload.png", alt: "TrustShare upload", fit: "portrait" },
+        { src: "assets/trustshare-pipeline.png", alt: "TrustShare security pipeline", fit: "portrait" },
+        { src: "assets/trustshare-access.png", alt: "TrustShare access request", fit: "portrait" },
+        { src: "assets/trustshare-verify.png", alt: "TrustShare verify", fit: "portrait" }
       ]
     }
   ];
@@ -1399,11 +1407,13 @@
     const main = document.getElementById('work-modal-main');
     const thumbs = document.getElementById('work-modal-thumbs');
     if(!work.images.length){
+      main.classList.remove('is-portrait');
       main.innerHTML = `<div class="no-shot">${t('shot_placeholder')}</div>`;
       thumbs.innerHTML = '';
       return;
     }
     const img = work.images[index];
+    main.classList.toggle('is-portrait', img.fit === 'portrait');
     main.innerHTML = `<img src="${img.src}" alt="${img.alt}">`;
     thumbs.querySelectorAll('button').forEach((btn, i) => {
       btn.classList.toggle('active', i === index);
