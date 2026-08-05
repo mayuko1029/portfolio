@@ -6,7 +6,7 @@
 <title>Mayuko Kamazuka — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #e7eef0;
@@ -28,7 +28,7 @@
     --cover-h: calc(100vh - var(--header-h));
     --cover-h: calc(100svh - var(--header-h));
     --font: 'Outfit', 'Noto Sans JP', sans-serif;
-    --font-display: 'Fraunces', Georgia, serif;
+    --font-display: 'Outfit', 'Noto Sans JP', sans-serif;
   }
 
   *{ box-sizing:border-box; }
@@ -757,50 +757,92 @@
 
   /* ---------- Experience ---------- */
   .timeline{
-    max-width:780px;
+    --rail:18px;
+    max-width:820px;
     margin:0 auto;
+    position:relative;
     display:flex;
     flex-direction:column;
-    gap:18px;
+    gap:36px;
+    padding-left:calc(var(--rail) + 24px);
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:calc(var(--rail) / 2);
+    top:8px;
+    bottom:8px;
+    width:1px;
+    background:rgba(58,67,72,0.18);
+    transform:translateX(-50%);
   }
   .entry{
-    background:var(--surface);
-    border:1px solid var(--rule);
-    border-radius:4px;
-    padding:26px 28px;
+    position:relative;
+    background:transparent;
+    border:none;
+    border-radius:0;
+    padding:0;
     box-shadow:none;
+  }
+  .entry::before{
+    content:"";
+    position:absolute;
+    left:calc(-24px - var(--rail) / 2);
+    top:0.55em;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--ink);
+    border:2px solid var(--bg);
+    box-shadow:0 0 0 1px rgba(58,67,72,0.22);
+    transform:translateX(-50%);
   }
   .entry-head{
     display:flex;
-    justify-content:space-between;
     align-items:baseline;
+    justify-content:space-between;
+    gap:16px 28px;
     flex-wrap:wrap;
-    gap:8px;
-    margin-bottom:6px;
+    margin-bottom:12px;
   }
-  .entry-dates{
-    font-size:12.5px;
-    font-weight:600;
-    letter-spacing:0.04em;
-    color:var(--ink-soft);
+  .entry-main{
+    flex:1 1 280px;
+    margin:0;
+    font-family:var(--font);
+    font-size:clamp(15px, 1.7vw, 17px);
+    font-weight:500;
+    color:var(--ink);
+    letter-spacing:-0.01em;
   }
-  .entry-title{
-    margin:0 0 4px;
-    font-family:var(--font-display);
-    font-size:22px;
+  .entry-main strong{
     font-weight:700;
   }
-  .entry-company{
-    font-size:13.5px;
+  .entry-main .entry-meta{
+    font-weight:500;
     color:var(--ink-soft);
-    margin-bottom:12px;
+  }
+  .entry-dates{
+    flex:0 0 auto;
+    font-family:var(--font);
+    font-size:14px;
+    font-weight:400;
+    font-style:italic;
+    letter-spacing:0;
+    color:var(--ink-soft);
+    white-space:nowrap;
   }
   .entry ul{
     margin:0;
     padding-left:18px;
     font-size:14.5px;
+    color:var(--ink);
   }
   .entry li{ margin-bottom:6px; }
+  .entry li:last-child{ margin-bottom:0; }
+  @media (max-width:720px){
+    .timeline{ padding-left:calc(var(--rail) + 18px); gap:28px; }
+    .entry-head{ flex-direction:column; gap:4px; }
+  }
 
   /* ---------- Education ---------- */
   .edu-card{
@@ -1015,26 +1057,28 @@
     <div class="timeline">
       <article class="entry">
         <div class="entry-head">
-          <h3 class="entry-title" data-i18n="exp1_title">Remote Accounting Staff</h3>
-          <span class="entry-dates" data-i18n="exp1_dates">2024 — Present</span>
+          <p class="entry-main" data-i18n="exp1_line"><strong>Remote Accounting Staff</strong> <span class="entry-meta">| Aoi Tax &amp; Consulting Group</span></p>
+          <span class="entry-dates" data-i18n="exp1_dates">2024 – Present</span>
         </div>
-        <div class="entry-company" data-i18n="exp1_company">Aoi Tax &amp; Consulting Group · Part-time</div>
         <ul>
-          <li data-i18n="exp1_b1">Built a cloud-based procedures manual in Notion to standardise annual and monthly tax filing workflows, lifting team efficiency by 30%.</li>
-          <li data-i18n="exp1_b2">Maintained accurate bookkeeping records under secure cloud file-handling protocols, reinforcing hands-on discipline around data integrity.</li>
+          <li data-i18n="exp1_b1">Supported users of cloud-based accounting systems.</li>
+          <li data-i18n="exp1_b2">Resolved day-to-day operational issues.</li>
+          <li data-i18n="exp1_b3">Developed comprehensive knowledge base documentation.</li>
+          <li data-i18n="exp1_b4">Improved team efficiency through process automation and documentation.</li>
         </ul>
       </article>
       <article class="entry">
         <div class="entry-head">
-          <h3 class="entry-title" data-i18n="exp2_title">Management &amp; Accounting Staff</h3>
-          <span class="entry-dates" data-i18n="exp2_dates">2017 — 2023</span>
+          <p class="entry-main" data-i18n="exp2_line"><strong>Management &amp; Accounting Staff</strong> <span class="entry-meta">| I-Glocal Co., Ltd. | Japan &amp; Vietnam</span></p>
+          <span class="entry-dates" data-i18n="exp2_dates">2017 – 2023</span>
         </div>
-        <div class="entry-company" data-i18n="exp2_company">I-Glocal Co., Ltd. · Japan &amp; Vietnam</div>
         <ul>
-          <li data-i18n="exp2_b1">Helped migrate financial workflows from Excel to a cloud-integrated accounting system, cutting manual processing time by 40%.</li>
-          <li data-i18n="exp2_b2">Supported an automated invoicing rollout for 400+ clients, reducing manual workload by 50%.</li>
-          <li data-i18n="exp2_b3">Managed contracts and consultations across a 1,000+ account portfolio, including ASX-listed companies.</li>
-          <li data-i18n="exp2_b4">Coordinated with cross-border teams in Japan and Vietnam on technical documentation and training for 30+ colleagues, in English and Japanese.</li>
+          <li data-i18n="exp2_b1">Served as the primary point of contact for operational and system-related enquiries from over 1,000 corporate clients.</li>
+          <li data-i18n="exp2_b2">Investigated and resolved business system issues by coordinating with teams across Japan and Vietnam.</li>
+          <li data-i18n="exp2_b3">Supported migration from Excel-based processes to cloud-based systems, improving operational efficiency by 40%.</li>
+          <li data-i18n="exp2_b4">Created user guidance and documentation for new internal systems.</li>
+          <li data-i18n="exp2_b5">Worked closely with end users to troubleshoot issues and ensure minimal business disruption.</li>
+          <li data-i18n="exp2_b6">Delivered training and ongoing support following new system implementations.</li>
         </ul>
       </article>
     </div>
@@ -1143,19 +1187,32 @@
     skill_en:{en:"English — Professional",ja:"英語 ― ビジネスレベル"},
 
     experience_heading:{en:"Experience",ja:"Experience"},
-    exp1_dates:{en:"2024 — Present",ja:"2024年 ― 現在"},
-    exp1_title:{en:"Remote Accounting Staff",ja:"リモート経理スタッフ"},
-    exp1_company:{en:"Aoi Tax &amp; Consulting Group · Part-time",ja:"Aoi Tax &amp; Consulting Group ・ パートタイム"},
-    exp1_b1:{en:"Built a cloud-based procedures manual in Notion to standardise annual and monthly tax filing workflows, lifting team efficiency by 30%.",ja:"Notionを用いて年次・月次の税務申告フローを標準化したクラウド型業務マニュアルを構築し、チームの業務効率を30%改善。"},
-    exp1_b2:{en:"Maintained accurate bookkeeping records under secure cloud file-handling protocols, reinforcing hands-on discipline around data integrity.",ja:"安全なクラウドファイル管理プロトコルのもとで正確な記帳を実施し、データの正確性を担保する実務感覚を強化。"},
-
-    exp2_dates:{en:"2017 — 2023",ja:"2017年 ― 2023年"},
-    exp2_title:{en:"Management &amp; Accounting Staff",ja:"マネジメント・経理スタッフ"},
-    exp2_company:{en:"I-Glocal Co., Ltd. · Japan &amp; Vietnam",ja:"I-Glocal Co., Ltd. ・ 日本 & ベトナム"},
-    exp2_b1:{en:"Helped migrate financial workflows from Excel to a cloud-integrated accounting system, cutting manual processing time by 40%.",ja:"Excel運用からクラウド統合型会計システムへの移行を支援し、手作業による処理時間を40%削減。"},
-    exp2_b2:{en:"Supported an automated invoicing rollout for 400+ clients, reducing manual workload by 50%.",ja:"400件超のクライアント向け請求書自動化の導入を支援し、手作業の負荷を50%削減。"},
-    exp2_b3:{en:"Managed contracts and consultations across a 1,000+ account portfolio, including ASX-listed companies.",ja:"ASX上場企業を含む1,000件超のアカウントポートフォリオにおいて、契約管理・コンサルティング対応を担当。"},
-    exp2_b4:{en:"Coordinated with cross-border teams in Japan and Vietnam on technical documentation and training for 30+ colleagues, in English and Japanese.",ja:"日本とベトナムの部門横断チームと連携し、30名超の同僚に対して英語・日本語で技術文書の整備と研修を実施。"},
+    exp1_dates:{en:"2024 – Present",ja:"2024 – Present"},
+    exp1_line:{en:"<strong>Remote Accounting Staff</strong> <span class=\"entry-meta\">| Aoi Tax &amp; Consulting Group</span>",
+      ja:"<strong>Remote Accounting Staff</strong> <span class=\"entry-meta\">| Aoi Tax &amp; Consulting Group</span>"},
+    exp1_b1:{en:"Supported users of cloud-based accounting systems.",
+      ja:"クラウド会計システムのユーザーサポートを担当。"},
+    exp1_b2:{en:"Resolved day-to-day operational issues.",
+      ja:"日々の業務上の課題を解決。"},
+    exp1_b3:{en:"Developed comprehensive knowledge base documentation.",
+      ja:"包括的なナレッジベースのドキュメントを整備。"},
+    exp1_b4:{en:"Improved team efficiency through process automation and documentation.",
+      ja:"業務の自動化とドキュメント整備によりチームの効率を改善。"},
+    exp2_dates:{en:"2017 – 2023",ja:"2017 – 2023"},
+    exp2_line:{en:"<strong>Management &amp; Accounting Staff</strong> <span class=\"entry-meta\">| I-Glocal Co., Ltd. | Japan &amp; Vietnam</span>",
+      ja:"<strong>Management &amp; Accounting Staff</strong> <span class=\"entry-meta\">| I-Glocal Co., Ltd. | Japan &amp; Vietnam</span>"},
+    exp2_b1:{en:"Served as the primary point of contact for operational and system-related enquiries from over 1,000 corporate clients.",
+      ja:"1,000社超の法人クライアントからの業務・システム関連の問い合わせ窓口を担当。"},
+    exp2_b2:{en:"Investigated and resolved business system issues by coordinating with teams across Japan and Vietnam.",
+      ja:"日本・ベトナムのチームと連携し、業務システムの課題を調査・解決。"},
+    exp2_b3:{en:"Supported migration from Excel-based processes to cloud-based systems, improving operational efficiency by 40%.",
+      ja:"Excelベースの業務からクラウドシステムへの移行を支援し、業務効率を40%改善。"},
+    exp2_b4:{en:"Created user guidance and documentation for new internal systems.",
+      ja:"新社内システム向けのユーザーガイドとドキュメントを作成。"},
+    exp2_b5:{en:"Worked closely with end users to troubleshoot issues and ensure minimal business disruption.",
+      ja:"エンドユーザーと密に連携して障害対応を行い、業務への影響を最小化。"},
+    exp2_b6:{en:"Delivered training and ongoing support following new system implementations.",
+      ja:"新システム導入後の研修と継続サポートを実施。"},
 
     projects_heading:{en:"Works",ja:"Works"},
     projects_intro:{en:"A selection of apps and systems I've built. Click a thumbnail to see the details.",
